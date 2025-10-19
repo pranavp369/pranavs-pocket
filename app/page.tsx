@@ -27,7 +27,7 @@ export default function HomePage() {
     return () => observer.disconnect();
   }, []);
 
-  const scrollToSection = (section) => {
+  const scrollToSection = (section: any) => {
     setCurrentSection(section);
     const element = document.getElementById(`section-${section}`);
     element?.scrollIntoView({ behavior: 'smooth' });
