@@ -2,19 +2,46 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Inter, Playfair_Display, Permanent_Marker,Monoton,Rubik_Glitch, Bungee_Shade } from 'next/font/google'
 
 export const metadata: Metadata = {
   title: "Pranav's Portfolio",
   description: "Personal portfolio showcasing projects, writing, and photography",
 };
 
+const inter = Inter({ subsets: ['latin'] })
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  variable: '--font-playfair',
+})
+const marker = Permanent_Marker({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-marker',
+})
+const monoton = Monoton({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-monoton',
+})
+const rubik_glitch = Rubik_Glitch({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-rubikglitch',
+})
+const bungee_shade = Bungee_Shade({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-bungeeshade',
+})
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body className="bg-white dark:bg-gray-900 dark:text-gray-100 transition-colors">
+    <html lang="en" className={`${inter.className} ${playfair.variable} ${marker.variable} ${monoton.variable} ${rubik_glitch.variable} ${bungee_shade.variable}`}>
+      <body>
         <Navbar />
         <main>{children}</main>
       </body>
     </html>
-  );
+  )
 }

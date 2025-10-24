@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 export default function HomePage() {
   const [currentSection, setCurrentSection] = useState(0);
   const [theme, setTheme] = useState("light");
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     // Sync with theme from navbar
@@ -23,7 +24,10 @@ export default function HomePage() {
       attributes: true,
       attributeFilter: ["class"]
     });
-    
+
+    // Trigger animation on mount
+    setTimeout(() => setShowContent(true), 100);
+
     return () => observer.disconnect();
   }, []);
 
@@ -46,12 +50,41 @@ export default function HomePage() {
         style={{ minHeight: 'calc(100vh - 72px)' }}
       >
         <div className="flex-1 flex flex-col justify-center items-center text-center px-4 md:px-8">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to My Portfolio</h1>
-          <p className="text-xl md:text-2xl mb-4 md:mb-8">Hi, I'm Pranav</p>
-          <p className="text-base md:text-lg max-w-2xl">
+          {/* Main Content with Animations */}
+
+          <div className={`transition-all duration-1000 delay-300 ${
+            showContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+          }`}>
+          <p className="font-marker text-xl md:text-xl mb-4 md:mb-8">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus cursus neque. Aliquam feugiat ultrices blandit. Quisque efficitur metus vitae lacinia pretium. Quisque sed ultrices ex, non tempus turpis. Duis non sapien a ante aliquam malesuada. Ut gravida fringilla mauris, at semper ipsum sollicitudin nec. Praesent ornare lorem in massa tempor ultrices. Nullam quis efficitur leo, id feugiat sapien. Vestibulum eleifend cursus nisi, eget ullamcorper ante. Vestibulum iaculis odio ut libero venenatis fermentum. Nunc libero elit, semper ut justo a, imperdiet efficitur libero. Nam egestas auctor dapibus. Mauris imperdiet eu urna quis mollis. Suspendisse vitae ex molestie enim tincidunt scelerisque. Cras convallis non nibh vulputate malesuada.
+
+            Sed porta placerat pulvinar. Fusce at ultrices ligula, eu porttitor eros. Nam lectus diam, sodales sit amet tortor non, imperdiet convallis metus. In blandit fringilla massa at aliquet. Ut commodo mi eros, in lacinia orci efficitur eget. Nullam interdum pharetra tempor. Nulla pharetra laoreet libero, at feugiat nibh molestie a. Sed pellentesque justo turpis. Phasellus vitae ex sodales, maximus diam sit amet, pulvinar dolor. Duis accumsan blandit gravida. Nulla rutrum, felis non pretium faucibus, nisi libero vehicula metus, et mollis nisi arcu ac arcu.
+
+            Etiam consequat eros massa, in hendrerit turpis porttitor ut.
+          </p>
+          </div>
+
+          <div className={`transition-all duration-1000 ${
+            showContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+          }`}>
+          <h1 className="font-marker text-4xl md:text-6xl font-bold mb-4">WELCOME TO MY CREATIVE LITTLE POCKET</h1>
+          </div>
+          
+          <div className={`transition-all duration-1000 delay-500 ${
+            showContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+          }`}>
+          <p className="font-marker text-base md:text-lg max-w-2xl">
             Explore my projects, stories, poems, and photography
           </p>
+          </div>
+          {/* Decorative Line */}
+          <div className={`mt-8 w-24 h-1 rounded-full transition-all duration-1000 delay-700 ${
+            theme === "dark" ? "bg-white" : "bg-black"
+          } ${showContent ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}>
         </div>
+        
+        </div>
+        
         
         {/* Slider Toggle at Bottom */}
         <button
@@ -75,6 +108,24 @@ export default function HomePage() {
             />
           </svg>
         </button>
+
+        <style jsx>{`
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0) translateX(0);
+            }
+            25% {
+              transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+              transform: translateY(-10px) translateX(-10px);
+            }
+            75% {
+              transform: translateY(-15px) translateX(5px);
+            }
+          }
+        `}</style>
+
       </section>
 
       {/* Section 2 - Full screen without navbar */}

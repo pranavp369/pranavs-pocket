@@ -7,7 +7,17 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        playfair: ['var(--font-playfair)'],
+        marker: ['var(--font-marker)'],
+        monoton: ['var(--font-monoton)'],
+        rubikglitch: ['var(--font-rubikglitch)'],
+        bungeeshade: ['var(--font-bungeeshade)'],
+      },
+    },
   },
   plugins: [],
 }
+
+

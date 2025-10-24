@@ -36,8 +36,8 @@ export default function Navbar() {
     <nav className="flex justify-between items-center py-4 px-4 md:px-8 shadow-md bg-amber-100 text-black dark:bg-gray-800 dark:text-gray-100 relative z-50">
       {/* Left side */}
       <div className="flex items-center space-x-2 md:space-x-4">
-        <Link href="/" className="text-lg md:text-xl font-bold hover:opacity-80 transition">
-          Pranav's Portfolio
+        <Link href="/" className="font-bungeeshade text-lg md:text-xl font-bold hover:opacity-80 transition">
+          Pranav's Pocket
         </Link>
         <button
           onClick={toggleTheme}
@@ -79,12 +79,12 @@ export default function Navbar() {
 
       {/* Desktop Menu */}
       <div className="hidden md:flex space-x-6 text-lg">
-        <Link href="/" className="hover:opacity-80 transition">Home</Link>
-        <Link href="/bio" className="hover:opacity-80 transition">Bio</Link>
-        <Link href="/projects" className="hover:opacity-80 transition">Projects</Link>
-        <Link href="/stories" className="hover:opacity-80 transition">Stories</Link>
-        <Link href="/poems" className="hover:opacity-80 transition">Poems</Link>
-        <Link href="/photography" className="hover:opacity-80 transition">Photography</Link>
+        <Link href="/" className="font-marker hover:opacity-80 transition">Home</Link>
+        <Link href="/Bio" className="font-marker hover:opacity-80 transition">Bio</Link>
+        <Link href="/Projects" className="font-marker hover:opacity-80 transition">Projects</Link>
+        <Link href="/Stories" className="font-marker hover:opacity-80 transition">Stories</Link>
+        <Link href="/Poems" className="font-marker hover:opacity-80 transition">Poems</Link>
+        <Link href="/Photography" className="font-marker hover:opacity-80 transition">Photography</Link>
       </div>
 
       {/* Mobile Menu Dropdown */}
@@ -94,7 +94,7 @@ export default function Navbar() {
             <Link 
               href="/" 
               onClick={closeMenu} 
-              className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
+              className="font-marker hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
               Home
             </Link>
