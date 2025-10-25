@@ -14,6 +14,7 @@ module.exports = {
         monoton: ['var(--font-monoton)'],
         rubikglitch: ['var(--font-rubikglitch)'],
         bungeeshade: ['var(--font-bungeeshade)'],
+        rougescript: ['var(--font-rougescript)'],
       },
     },
   },
