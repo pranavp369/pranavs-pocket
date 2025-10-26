@@ -1,36 +1,45 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 
 export default function HomePage() {
   const [currentSection, setCurrentSection] = useState(0);
-  const [theme, setTheme] = useState("light");
+  //const [theme, setTheme] = useState("light");
   const [showContent, setShowContent] = useState(false);
   const [noteOpen, setNoteOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     // Sync with theme from navbar
-    const checkTheme = () => {
-      if (document.documentElement.classList.contains("dark")) {
-        setTheme("dark");
-      } else {
-        setTheme("light");
-      }
-    };
+    // const checkTheme = () => {
+    //   if (document.documentElement.classList.contains("dark")) {
+    //     setTheme("dark");
+    //   } else {
+    //     setTheme("light");
+    //   }
+    // };
     
-    checkTheme();
+    // checkTheme();
     
-    // Listen for theme changes
-    const observer = new MutationObserver(checkTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"]
-    });
+    // // Listen for theme changes
+    // const observer = new MutationObserver(checkTheme);
+    // observer.observe(document.documentElement, {
+    //   attributes: true,
+    //   attributeFilter: ["class"]
+    // });
+
+    setMounted(true);
 
     // Trigger animation on mount
     setTimeout(() => setShowContent(true), 100);
 
-    return () => observer.disconnect();
+    //return () => observer.disconnect();
   }, []);
+
+  if (!mounted) {
+    return null; // Avoid hydration mismatch
+  }
 
   const scrollToSection = (section: number) => {
     setCurrentSection(section);

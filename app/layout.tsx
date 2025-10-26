@@ -1,4 +1,5 @@
 import "./globals.css";
+import { ThemeProvider } from 'next-themes'
 import Navbar from "../components/Navbar";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
@@ -41,12 +42,34 @@ const rougescript = Rouge_Script({
 })
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  
   return (
-    <html lang="en" className={`${inter.className} ${playfair.variable} ${marker.variable} ${monoton.variable} ${rubik_glitch.variable} ${bungee_shade.variable} ${rougescript.variable}`}>
+    <html lang="en" className={`${inter.className} ${playfair.variable} ${marker.variable} ${monoton.variable} ${rubik_glitch.variable} ${bungee_shade.variable} ${rougescript.variable}`} suppressHydrationWarning>
       <body>
-        <Navbar />
-        <main>{children}</main>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar />
+            <main>{children}</main>
+        </ThemeProvider> 
       </body>
     </html>
   )
 }
+
+
+
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode
+// }) {
+//   return (
+//     <html lang="en" suppressHydrationWarning>
+//       <body>
+//         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+//           <Nav />
+//           {children}
+//         </ThemeProvider>
+//       </body>
+//     </html>
+//   )
+// }

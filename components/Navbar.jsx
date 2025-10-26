@@ -1,34 +1,46 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 
 export default function Navbar() {
-  const [theme, setTheme] = useState("light");
+  //const [theme, setTheme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   // On mount, check local storage for saved theme
+
   useEffect(() => {
-    if (localStorage.theme === "dark" ||
-        (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-      document.documentElement.classList.add("dark");
-      setTheme("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      setTheme("light");
-    }
+    setMounted(true);
   }, []);
 
   const toggleTheme = () => {
-    if (theme === "dark") {
-      document.documentElement.classList.remove("dark");
-      localStorage.theme = "light";
-      setTheme("light");
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.theme = "dark";
-      setTheme("dark");
-    }
+    setTheme(theme === "dark" ? "light" : "dark");
   };
+
+  // useEffect(() => {
+  //   if (localStorage.theme === "dark" ||
+  //       (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+  //     document.documentElement.classList.add("dark");
+  //     setTheme("dark");
+  //   } else {
+  //     document.documentElement.classList.remove("dark");
+  //     setTheme("light");
+  //   }
+  // }, []);
+
+  // const toggleTheme = () => {
+  //   if (theme === "dark") {
+  //     document.documentElement.classList.remove("dark");
+  //     localStorage.theme = "light";
+  //     setTheme("light");
+  //   } else {
+  //     document.documentElement.classList.add("dark");
+  //     localStorage.theme = "dark";
+  //     setTheme("dark");
+  //   }
+  // };
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -43,7 +55,9 @@ export default function Navbar() {
           onClick={toggleTheme}
           className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
         >
-          {theme === "dark" ? "🌙" : "☀️"}
+          {mounted ? (theme === "dark" ? "🌙" : "☀️") : (
+            <div className="w-5 h-5"></div>
+          )}
         </button>
       </div>
 
@@ -99,35 +113,35 @@ export default function Navbar() {
               Home
             </Link>
             <Link 
-              href="/bio" 
+              href="/Bio" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
               Bio
             </Link>
             <Link 
-              href="/projects" 
+              href="/Projects" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
               Projects
             </Link>
             <Link 
-              href="/stories" 
+              href="/Stories" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
               Stories
             </Link>
             <Link 
-              href="/poems" 
+              href="/Poems" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
               Poems
             </Link>
             <Link 
-              href="/photography" 
+              href="/Photography" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >

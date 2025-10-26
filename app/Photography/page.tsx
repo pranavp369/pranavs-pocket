@@ -1,29 +1,19 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 
 export default function Photography() {
-  const [theme, setTheme] = useState("light");
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    const checkTheme = () => {
-      if (document.documentElement.classList.contains("dark")) {
-        setTheme("dark");
-      } else {
-        setTheme("light");
-      }
-    };
-    
-    checkTheme();
-    
-    const observer = new MutationObserver(checkTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"]
-    });
-    
-    return () => observer.disconnect();
+    setMounted(true);
   }, []);
+
+  if (!mounted) {
+    return null; // Avoid hydration mismatch
+  }
 
   // Sample album data - replace with your actual albums
   const albums = [
