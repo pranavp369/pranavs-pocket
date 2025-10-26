@@ -97,7 +97,7 @@ export default function Stories() {
     }
   ];
 
-  const currentData = activeTab === "stories" ? stories : poems;
+  const currentData = activeTab === "Stories" ? stories : poems;
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
@@ -156,54 +156,9 @@ export default function Stories() {
           {currentData.map((item) => (
             <Link
               key={item.id}
-              href={`/${activeTab}/${item.id}`}
+              href={`/${activeTab}/${item.title.replace(/\s+/g, '-').toLowerCase()}`}
               className="group"
             >
-                {/* <div className={`p-6 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
-                  theme === "dark" 
-                    ? "bg-gray-800 hover:bg-gray-750" 
-                    : "bg-white hover:bg-gray-50"
-                }`}> */}
-                  {/* Title */}
-                  {/* <h3 className={`text-xl md:text-2xl font-bold mb-3 transition-colors ${
-                    theme === "dark"
-                      ? "text-gray-100 group-hover:text-purple-400"
-                      : "text-gray-900 group-hover:text-purple-600"
-                  }`}>
-                    {item.title}
-                  </h3> */}
-
-                  {/* Excerpt */}
-                  {/* <p className={`mb-4 italic ${
-                    theme === "dark" ? "text-gray-400" : "text-gray-600"
-                  }`}>
-                    {item.excerpt}
-                  </p> */}
-
-                  {/* Meta Info */}
-                  {/* <div className={`flex items-center justify-between text-sm ${
-                    theme === "dark" ? "text-gray-500" : "text-gray-500"
-                  }`}>
-                    <span>{item.date}</span>
-                    <span>{activeTab === "stories" 
-                    ? (item as typeof stories[number]).readTime 
-                    : (item as typeof poems[number]).lines}
-                    </span>
-                  </div> */}
-                  
-
-                  {/* Read More Indicator */}
-                  {/* <div className={`mt-4 flex items-center text-sm font-semibold transition-colors ${
-                    theme === "dark"
-                      ? "text-purple-400 group-hover:text-purple-300"
-                      : "text-purple-600 group-hover:text-purple-700"
-                  }`}>
-                    Read {activeTab === "stories" ? "Story" : "Poem"}
-                    <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div> */}
 
               <div className={`rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
               theme === "dark" 

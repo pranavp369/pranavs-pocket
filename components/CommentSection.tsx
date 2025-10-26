@@ -1,68 +1,3 @@
-// "use client";
-// import { useState, useEffect } from "react";
-// import { supabase } from "../lib/supabaseClient";
-
-// export default function CommentSection() {
-//   const [comments, setComments] = useState([]);
-//   const [name, setName] = useState("");
-//   const [message, setMessage] = useState("");
-
-//   useEffect(() => {
-//     fetchComments();
-//   }, []);
-
-//   async function fetchComments() {
-//     const { data, error } = await supabase.from("comments").select("*").order("created_at", { ascending: false });
-//     if (!error) setComments(data);
-//   }
-
-//   async function handleSubmit(e) {
-//     e.preventDefault();
-//     if (!name || !message) return;
-
-//     const { error } = await supabase.from("comments").insert([{ name, message }]);
-//     if (!error) {
-//       setName("");
-//       setMessage("");
-//       fetchComments();
-//     }
-//   }
-
-//   return (
-//     <div className="w-full max-w-xl mx-auto mt-10 border-t border-gray-300 pt-6 dark:border-gray-700">
-//       <h2 className="text-2xl font-semibold mb-4">Comments</h2>
-//       <form onSubmit={handleSubmit} className="flex flex-col space-y-3 mb-6">
-//         <input
-//           type="text"
-//           placeholder="Your name"
-//           className="border p-2 rounded-md dark:bg-gray-800 dark:text-white"
-//           value={name}
-//           onChange={(e) => setName(e.target.value)}
-//         />
-//         <textarea
-//           placeholder="Write a comment..."
-//           className="border p-2 rounded-md dark:bg-gray-800 dark:text-white"
-//           value={message}
-//           onChange={(e) => setMessage(e.target.value)}
-//         />
-//         <button type="submit" className="bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">Post</button>
-//       </form>
-
-//       <div className="space-y-4">
-//         {comments.map((c) => (
-//           <div key={c.id} className="p-3 border rounded-md dark:border-gray-700">
-//             <p className="font-semibold">{c.name}</p>
-//             <p>{c.message}</p>
-//             <p className="text-xs text-gray-500">{new Date(c.created_at).toLocaleString()}</p>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
 "use client";
 import { useState, useEffect, FormEvent } from "react";
 import { supabase } from "@/lib/supabaseClient";
@@ -97,8 +32,8 @@ export default function CommentSection({ pageName }: { pageName: string }) {
   const handleAddComment = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { data, error } = await supabase
-      .from("comments")
-      .insert([{ name: newComment.name, comment: newComment.comment }])
+      .from("portfolio_comments")
+      .insert([{page_name: pageName, commentor_name: newComment.name, comment: newComment.comment }])
       .select();
     if (!error && data) {
       setComments([data[0], ...comments]);

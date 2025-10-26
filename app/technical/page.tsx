@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Projects() {
   //const [theme, setTheme] = useState("light");
-  const [activeTab, setActiveTab] = useState("stories"); // "stories" or "poems"
+  const [activeTab, setActiveTab] = useState("projects"); 
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -54,6 +54,43 @@ export default function Projects() {
   ];
 
 
+  const articles= [
+    {
+      id: 1,
+      title: "Article 1",
+      excerpt: "The platform was empty, save for the echo of footsteps that weren't mine...",
+      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+      date: "October 2024",
+      readTime: "5 min read"
+    },
+    {
+      id: 2,
+      title: "Whispers in the Library",
+      excerpt: "Between dusty shelves and forgotten pages, she found a story that shouldn't exist...",
+      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+      date: "September 2024",
+      readTime: "8 min read"
+    },
+    {
+      id: 3,
+      title: "The Coffee Shop Philosopher",
+      excerpt: "Every morning at 7 AM, he sat at the same table with the same question...",
+      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+      date: "August 2024",
+      readTime: "6 min read"
+    },
+    {
+      id: 4,
+      title: "Moonlight Sonata",
+      excerpt: "The piano played itself at midnight, drawing her closer to the truth...",
+      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+      date: "July 2024",
+      readTime: "10 min read"
+    }
+  ];
+
+  const currentTab = activeTab === "projects" ? projects : articles;
+
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
       theme === "dark" 
@@ -65,14 +102,50 @@ export default function Projects() {
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">My Projects</h1>
           <p className={`text-lg ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
-            Stories that unfold and poems that resonate
+            A page for my technical projects and articles.
           </p>
+        </div>
+
+        {/* Toggle Switch */}
+        <div className="flex justify-center mb-12">
+          <div className={`inline-flex rounded-full p-1 ${
+            theme === "dark" ? "bg-gray-800" : "bg-gray-200"
+          }`}>
+            <button
+              onClick={() => setActiveTab("projects")}
+              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+                activeTab === "projects"
+                  ? theme === "dark"
+                    ? "bg-purple-600 text-white shadow-lg"
+                    : "bg-purple-500 text-white shadow-lg"
+                  : theme === "dark"
+                    ? "text-gray-400 hover:text-gray-200"
+                    : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              Projects
+            </button>
+            <button
+              onClick={() => setActiveTab("articles")}
+              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+                activeTab === "articles"
+                  ? theme === "dark"
+                    ? "bg-purple-600 text-white shadow-lg"
+                    : "bg-purple-500 text-white shadow-lg"
+                  : theme === "dark"
+                    ? "text-gray-400 hover:text-gray-200"
+                    : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              Articles
+            </button>
+          </div>
         </div>
 
         {/* Content Grid */}
         {/* <div className="max-w-5xl mx-auto"> */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"> 
-          {projects.map((item) => (
+          {currentTab.map((item) => (
             <Link
               key={item.id}
               href={`/${activeTab}/${item.id}`}
@@ -115,7 +188,7 @@ export default function Projects() {
                       ? "text-purple-400 group-hover:text-purple-300"
                       : "text-purple-600 group-hover:text-purple-700"
                   }`}>
-                    Read {activeTab === "stories" ? "Story" : "Poem"}
+                    Read More...
                     <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>

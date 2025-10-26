@@ -19,29 +19,6 @@ export default function Navbar() {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  // useEffect(() => {
-  //   if (localStorage.theme === "dark" ||
-  //       (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-  //     document.documentElement.classList.add("dark");
-  //     setTheme("dark");
-  //   } else {
-  //     document.documentElement.classList.remove("dark");
-  //     setTheme("light");
-  //   }
-  // }, []);
-
-  // const toggleTheme = () => {
-  //   if (theme === "dark") {
-  //     document.documentElement.classList.remove("dark");
-  //     localStorage.theme = "light";
-  //     setTheme("light");
-  //   } else {
-  //     document.documentElement.classList.add("dark");
-  //     localStorage.theme = "dark";
-  //     setTheme("dark");
-  //   }
-  // };
-
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -94,11 +71,11 @@ export default function Navbar() {
       {/* Desktop Menu */}
       <div className="hidden md:flex space-x-6 text-lg">
         <Link href="/" className="font-marker hover:opacity-80 transition">Home</Link>
-        <Link href="/Bio" className="font-marker hover:opacity-80 transition">Bio</Link>
-        <Link href="/Projects" className="font-marker hover:opacity-80 transition">Projects</Link>
-        <Link href="/Stories" className="font-marker hover:opacity-80 transition">Stories</Link>
-        <Link href="/Poems" className="font-marker hover:opacity-80 transition">Poems</Link>
-        <Link href="/Photography" className="font-marker hover:opacity-80 transition">Photography</Link>
+        <Link href="/bio" className="font-marker hover:opacity-80 transition">Bio</Link>
+        <Link href="/technical" className="font-marker hover:opacity-80 transition">Technical</Link>
+        <Link href="/stories" className="font-marker hover:opacity-80 transition">Stories</Link>
+        <Link href="/poems" className="font-marker hover:opacity-80 transition">Poems</Link>
+        <Link href="/photography" className="font-marker hover:opacity-80 transition">Photography</Link>
       </div>
 
       {/* Mobile Menu Dropdown */}
@@ -113,35 +90,35 @@ export default function Navbar() {
               Home
             </Link>
             <Link 
-              href="/Bio" 
+              href="/bio" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
               Bio
             </Link>
             <Link 
-              href="/Projects" 
+              href="/technical" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
-              Projects
+              Technical
             </Link>
             <Link 
-              href="/Stories" 
+              href="/stories" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
               Stories
             </Link>
             <Link 
-              href="/Poems" 
+              href="/poems" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
               Poems
             </Link>
             <Link 
-              href="/Photography" 
+              href="/photography" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
