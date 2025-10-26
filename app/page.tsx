@@ -45,8 +45,8 @@ export default function HomePage() {
         id="section-0"
         className={`min-h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
           theme === "dark" 
-            ? "bg-gradient-to-br from-gray-800 via-violet-900 to-gray-800 text-gray-100" 
-            : "bg-gradient-to-br from-red-100 to-lime-200"
+            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100" 
+            : "bg-gradient-to-br from-red-50 to-red-50"
         }`}
         style={{ minHeight: 'calc(100vh - 72px)' }}
       >
@@ -129,8 +129,8 @@ export default function HomePage() {
         id="section-1"
         className={`fixed top-0 left-0 w-full h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
           theme === "dark"
-            ? "bg-gradient-to-br from-gray-800 via-violet-900 to-gray-800 text-gray-100"
-            : "bg-gradient-to-r from-red-100 to-lime-200"
+            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100"
+            : "bg-gradient-to-r from-red-50 to-red-50"
         }`}
         style={{ 
           transform: currentSection === 1 ? 'translateY(0)' : 'translateY(100%)',
