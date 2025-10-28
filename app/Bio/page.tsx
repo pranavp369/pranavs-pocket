@@ -153,7 +153,7 @@
 "use client";
 import { useState } from "react";
 
-export default function LikeButton({ initialLikes = 0, commentId }) {
+export default function LikeButton({ initialLikes = 0}) {
   const [likes, setLikes] = useState(initialLikes);
   const [isLiked, setIsLiked] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -330,7 +330,7 @@ export function CommentExample() {
                 This is an amazing post! I really enjoyed reading it. Keep up the great work!
               </p>
               <div className="flex items-center gap-4">
-                <LikeButton initialLikes={24} commentId="1" />
+                <LikeButton initialLikes={24} />
                 <button className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
                   Reply
                 </button>
@@ -360,7 +360,7 @@ export function CommentExample() {
                 Beautiful photography! The composition and lighting are perfect.
               </p>
               <div className="flex items-center gap-4">
-                <LikeButton initialLikes={42} commentId="2" />
+                <LikeButton initialLikes={42}/>
                 <button className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
                   Reply
                 </button>
@@ -390,7 +390,7 @@ export function CommentExample() {
                 Your writing style is so engaging. Can't wait for the next one!
               </p>
               <div className="flex items-center gap-4">
-                <LikeButton initialLikes={15} commentId="3" />
+                <LikeButton initialLikes={15}/>
                 <button className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
                   Reply
                 </button>
