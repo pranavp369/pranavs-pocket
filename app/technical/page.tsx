@@ -2,107 +2,71 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { supabase } from "@/lib/supabaseClient";
 
-export default function Projects() {
-  //const [theme, setTheme] = useState("light");
-  const [activeTab, setActiveTab] = useState("projects"); 
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+type Article = {
+  id: number;
+  article_title: string;
+  article_description: string;
+  article_image: string;
+  article_date: string;
+  article_meta: string;
+  page_name: string;
+  created_at: string;
+};
+
+
+export default function Stories() {
+  const [activeTab, setActiveTab] = useState<'projects' | 'blogs'>('projects');
+    const [article, setArticle] = useState<Article[]>([]);
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+      setMounted(true);
+    }, []);
+  
+    useEffect(() => {
+      if (!mounted) return;
+  
+      const fetchArticles = async () => {
+        setLoading(true);
+  
+        const { data, error } = await supabase
+          .from("page_articles")
+          .select("*")
+          .eq("page_name", activeTab)
+          .order("created_at", { ascending: false });
+  
+        if (error) {
+          console.error("Error fetching articles:", error);
+        } else {
+          setArticle(data || []);
+        }
+  
+        setLoading(false);
+      };
+  
+      fetchArticles();
+    }, [activeTab, mounted]);
 
   if (!mounted) {
     return null; // Avoid hydration mismatch
   }
 
-  // Sample stories data
-  const projects= [
-    {
-      id: 1,
-      title: "The Last Train",
-      excerpt: "The platform was empty, save for the echo of footsteps that weren't mine...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "October 2024",
-      readTime: "5 min read"
-    },
-    {
-      id: 2,
-      title: "Whispers in the Library",
-      excerpt: "Between dusty shelves and forgotten pages, she found a story that shouldn't exist...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "September 2024",
-      readTime: "8 min read"
-    },
-    {
-      id: 3,
-      title: "The Coffee Shop Philosopher",
-      excerpt: "Every morning at 7 AM, he sat at the same table with the same question...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "August 2024",
-      readTime: "6 min read"
-    },
-    {
-      id: 4,
-      title: "Moonlight Sonata",
-      excerpt: "The piano played itself at midnight, drawing her closer to the truth...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "July 2024",
-      readTime: "10 min read"
-    }
-  ];
-
-
-  const articles= [
-    {
-      id: 1,
-      title: "Article 1",
-      excerpt: "The platform was empty, save for the echo of footsteps that weren't mine...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "October 2024",
-      readTime: "5 min read"
-    },
-    {
-      id: 2,
-      title: "Whispers in the Library",
-      excerpt: "Between dusty shelves and forgotten pages, she found a story that shouldn't exist...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "September 2024",
-      readTime: "8 min read"
-    },
-    {
-      id: 3,
-      title: "The Coffee Shop Philosopher",
-      excerpt: "Every morning at 7 AM, he sat at the same table with the same question...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "August 2024",
-      readTime: "6 min read"
-    },
-    {
-      id: 4,
-      title: "Moonlight Sonata",
-      excerpt: "The piano played itself at midnight, drawing her closer to the truth...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "July 2024",
-      readTime: "10 min read"
-    }
-  ];
-
-  const currentTab = activeTab === "projects" ? projects : articles;
-
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
       theme === "dark" 
-        ? "bg-gray-900 text-gray-100" 
-        : "bg-gray-50 text-gray-900"
+        ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100" 
+        : "bg-gradient-to-br from-red-50 to-red-50"
     }`}>
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">My Projects</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Technical</h1>
           <p className={`text-lg ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
-            A page for my technical projects and articles.
+            My technical projects and blog posts
           </p>
         </div>
 
@@ -126,9 +90,9 @@ export default function Projects() {
               Projects
             </button>
             <button
-              onClick={() => setActiveTab("articles")}
+              onClick={() => setActiveTab("blogs")}
               className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeTab === "articles"
+                activeTab === "blogs"
                   ? theme === "dark"
                     ? "bg-purple-600 text-white shadow-lg"
                     : "bg-purple-500 text-white shadow-lg"
@@ -137,18 +101,23 @@ export default function Projects() {
                     : "text-gray-600 hover:text-gray-900"
               }`}
             >
-              Articles
+              Blogs
             </button>
           </div>
         </div>
 
-        {/* Content Grid */}
-        {/* <div className="max-w-5xl mx-auto"> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"> 
-          {currentTab.map((item) => (
+          {loading ? (
+            <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>Loading {activeTab} ...</p></div>
+             //<p className="text-center">Loading {activeTab}...</p>
+            ) : article.length === 0 ? (
+            <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>No {activeTab} yet. Check back soon!</p></div>
+             //<p className="text-center">No {activeTab} yet.</p>
+            ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {article.map((item) => (
             <Link
               key={item.id}
-              href={`/${activeTab}/${item.id}`}
+              href={`/technical/${activeTab}/${item.id}`}
               className="group"
             >
                 <div className={`p-6 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
@@ -162,22 +131,22 @@ export default function Projects() {
                       ? "text-gray-100 group-hover:text-purple-400"
                       : "text-gray-900 group-hover:text-purple-600"
                   }`}>
-                    {item.title}
+                    {item.article_title}
                   </h3>
 
                   {/* Excerpt */}
                   <p className={`mb-4 italic ${
                     theme === "dark" ? "text-gray-400" : "text-gray-600"
                   }`}>
-                    {item.excerpt}
+                    {item.article_description}
                   </p>
 
                   {/* Meta Info */}
                   <div className={`flex items-center justify-between text-sm ${
                     theme === "dark" ? "text-gray-500" : "text-gray-500"
                   }`}>
-                    <span>{item.date}</span>
-                    <span>{item.readTime}
+                    <span>{item.article_date}</span>
+                    <span>{item.article_meta}
                     </span>
                   </div>
                   
@@ -196,16 +165,9 @@ export default function Projects() {
                 </div>
             </Link>
           ))}
-      </div>
+            </div>
+          )}
 
-        {/* Empty State */}
-        {projects.length === 0 && (
-          <div className="text-center py-16">
-            <p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
-              No {activeTab} yet. Check back soon!
-            </p>
-          </div>
-        )}
       </div>
     </div>
   );

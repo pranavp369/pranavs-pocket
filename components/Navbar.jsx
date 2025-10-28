@@ -73,7 +73,7 @@ export default function Navbar() {
         <Link href="/" className="font-marker hover:opacity-80 transition">Home</Link>
         <Link href="/bio" className="font-marker hover:opacity-80 transition">Bio</Link>
         <Link href="/technical" className="font-marker hover:opacity-80 transition">Technical</Link>
-        <Link href="/stories" className="font-marker hover:opacity-80 transition">Stories</Link>
+        <Link href="/writing" className="font-marker hover:opacity-80 transition">Writing</Link>
         <Link href="/poems" className="font-marker hover:opacity-80 transition">Poems</Link>
         <Link href="/photography" className="font-marker hover:opacity-80 transition">Photography</Link>
       </div>
@@ -104,11 +104,11 @@ export default function Navbar() {
               Technical
             </Link>
             <Link 
-              href="/stories" 
+              href="/writing" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-4 rounded transition"
             >
-              Stories
+              Writing
             </Link>
             <Link 
               href="/poems" 

@@ -2,108 +2,64 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { supabase } from "@/lib/supabaseClient";
+
+type Article = {
+  id: number;
+  article_title: string;
+  article_description: string;
+  article_image: string;
+  article_date: string;
+  article_meta: string;
+  page_name: string;
+  created_at: string;
+};
+
 
 export default function Stories() {
-  //const [theme, setTheme] = useState("light");
-  const [activeTab, setActiveTab] = useState("stories"); // "stories" or "poems"
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [activeTab, setActiveTab] = useState<'stories' | 'poems'>('stories');
+    const [article, setArticle] = useState<Article[]>([]);
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+      setMounted(true);
+    }, []);
+  
+    useEffect(() => {
+      if (!mounted) return;
+  
+      const fetchArticles = async () => {
+        setLoading(true);
+  
+        const { data, error } = await supabase
+          .from("page_articles")
+          .select("*")
+          .eq("page_name", activeTab)
+          .order("created_at", { ascending: false });
+  
+        if (error) {
+          console.error("Error fetching articles:", error);
+        } else {
+          setArticle(data || []);
+        }
+  
+        setLoading(false);
+      };
+  
+      fetchArticles();
+    }, [activeTab, mounted]);
 
   if (!mounted) {
     return null; // Avoid hydration mismatch
   }
 
-  // Sample stories data
-  const stories = [
-    {
-      id: 1,
-      title: "The Last Train",
-      excerpt: "The platform was empty, save for the echo of footsteps that weren't mine...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "October 2024",
-      readTime: "5 min read"
-    },
-    {
-      id: 2,
-      title: "Whispers in the Library",
-      excerpt: "Between dusty shelves and forgotten pages, she found a story that shouldn't exist...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "September 2024",
-      readTime: "8 min read"
-    },
-    {
-      id: 3,
-      title: "The Coffee Shop Philosopher",
-      excerpt: "Every morning at 7 AM, he sat at the same table with the same question...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "August 2024",
-      readTime: "6 min read"
-    },
-    {
-      id: 4,
-      title: "Moonlight Sonata",
-      excerpt: "The piano played itself at midnight, drawing her closer to the truth...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "July 2024",
-      readTime: "10 min read"
-    }
-  ];
-
-  // Sample poems data
-  const poems = [
-    {
-      id: 1,
-      title: "Fragments of Time",
-      excerpt: "In the spaces between seconds / Where moments learn to dance...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "October 2024",
-      lines: "12 lines"
-    },
-    {
-      id: 2,
-      title: "Urban Symphony",
-      excerpt: "Sirens sing their midnight song / Concrete dreams and neon lights...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "September 2024",
-      lines: "16 lines"
-    },
-    {
-      id: 3,
-      title: "The Garden of Words",
-      excerpt: "I planted verbs in morning dew / And harvested metaphors by noon...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "August 2024",
-      lines: "20 lines"
-    },
-    {
-      id: 4,
-      title: "Echoes of Silence",
-      excerpt: "In the quiet between your words / I found a universe...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "July 2024",
-      lines: "8 lines"
-    },
-    {
-      id: 5,
-      title: "Canvas of Stars",
-      excerpt: "Paint me in constellations / Write me in light years...",
-      coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      date: "June 2024",
-      lines: "14 lines"
-    }
-  ];
-
-  const currentData = activeTab === "Stories" ? stories : poems;
-
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
       theme === "dark" 
-        ? "bg-gray-900 text-gray-100" 
-        : "bg-gray-50 text-gray-900"
+        ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100" 
+        : "bg-gradient-to-br from-red-50 to-red-50"
     }`}>
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
@@ -150,13 +106,18 @@ export default function Stories() {
           </div>
         </div>
 
-        {/* Content Grid */}
-        {/* <div className="max-w-5xl mx-auto"> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"> 
-          {currentData.map((item) => (
-            <Link
+          {loading ? (
+            <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>Loading {activeTab} ...</p></div>
+             //<p className="text-center">Loading {activeTab}...</p>
+            ) : article.length === 0 ? (
+            <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>No {activeTab} yet. Check back soon!</p></div>
+             //<p className="text-center">No {activeTab} yet.</p>
+            ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {article.map((item) => (
+              <Link
               key={item.id}
-              href={`/${activeTab}/${item.title.replace(/\s+/g, '-').toLowerCase()}`}
+              href={`/writing/${activeTab}/${item.article_title.replace(/\s+/g, '-').toLowerCase()}`}
               className="group"
             >
 
@@ -170,8 +131,8 @@ export default function Stories() {
                 {/* Album Cover Image */}
               <div className="relative h-64 overflow-hidden">
                 <img 
-                  src={item.coverImage} 
-                  alt={item.title}
+                  src={item.article_image} 
+                  alt={item.article_title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                   {/* Overlay on hover */}
@@ -180,41 +141,41 @@ export default function Stories() {
                     Read More
                   </span>
                 </div>
+              
                   {/* Photo Count Badge */}
 		            <div className="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm">
-                  {activeTab === "stories" 
-                  ? (item as typeof stories[number]).readTime 
-                  : (item as typeof poems[number]).lines}
+                   {item.article_meta}
                 </div>
                 <div className="absolute top-4 right-81 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm">
-                  {item.date}
+                  {item.article_date}
                 </div>
               </div>
 
                 {/* Album Info */}
               <div className="p-5">
                 <h3 className="text-xl font-bold mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                  {item.title}
+                  {item.article_title}
                 </h3>
                 <p className={`text-sm ${
                   theme === "dark" ? "text-gray-400" : "text-gray-600"
                 }`}>
-                  {item.excerpt}
+                  {item.article_description}
                 </p>
               </div>
             </div>
             </Link>
-          ))}
-      </div>
+            ))}
+            </div>
+          )}
 
         {/* Empty State */}
-        {currentData.length === 0 && (
+        {/* {article.length === 0 && (
           <div className="text-center py-16">
             <p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
               No {activeTab} yet. Check back soon!
             </p>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
