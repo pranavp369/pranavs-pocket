@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
+import FloatingSocialSlider from "@/components/SocialLinking";
 
 type Article = {
   id: number;
@@ -61,6 +62,7 @@ export default function Stories() {
         ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100" 
         : "bg-gradient-to-br from-red-50 to-red-50"
     }`}>
+      <FloatingSocialSlider />
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-8">

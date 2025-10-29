@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import FloatingSocialSlider from "@/components/SocialLinking"; 
+
 
 export default function HomePage() {
   const [currentSection, setCurrentSection] = useState(0);
@@ -60,6 +62,7 @@ export default function HomePage() {
         style={{ minHeight: 'calc(100vh - 72px)' }}
       >
         <div className="flex-1 flex flex-col justify-center items-center text-center px-4 md:px-8">
+          {/* <FloatingSocialSlider /> */}
           {/* Main Content */}
           <div className={`transition-all duration-1000 ${
             showContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
@@ -147,6 +150,7 @@ export default function HomePage() {
           zIndex: 50
         }}
       >
+        <FloatingSocialSlider />
         {/* Slider Toggle at Top */}
         <button
           onClick={() => scrollToSection(0)}
