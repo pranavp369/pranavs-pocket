@@ -13,24 +13,6 @@ export default function HomePage() {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    // Sync with theme from navbar
-    // const checkTheme = () => {
-    //   if (document.documentElement.classList.contains("dark")) {
-    //     setTheme("dark");
-    //   } else {
-    //     setTheme("light");
-    //   }
-    // };
-    
-    // checkTheme();
-    
-    // // Listen for theme changes
-    // const observer = new MutationObserver(checkTheme);
-    // observer.observe(document.documentElement, {
-    //   attributes: true,
-    //   attributeFilter: ["class"]
-    // });
-
     setMounted(true);
 
     // Trigger animation on mount
