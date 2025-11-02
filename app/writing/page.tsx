@@ -59,54 +59,97 @@ export default function Stories() {
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
       theme === "dark" 
-        ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100" 
-        : "bg-gradient-to-br from-red-50 to-red-50"
+        ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" 
+        : "bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50"
     }`}>
       <FloatingSocialSlider />
-      <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">My Writing</h1>
-          <p className={`text-lg ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
-            Stories that unfold and poems that resonate
-          </p>
-        </div>
 
-        {/* Toggle Switch */}
-        <div className="flex justify-center mb-12">
-          <div className={`inline-flex rounded-full p-1 ${
-            theme === "dark" ? "bg-gray-800" : "bg-gray-200"
-          }`}>
-            <button
-              onClick={() => setActiveTab("stories")}
-              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeTab === "stories"
-                  ? theme === "dark"
-                    ? "bg-purple-600 text-white shadow-lg"
-                    : "bg-purple-500 text-white shadow-lg"
-                  : theme === "dark"
-                    ? "text-gray-400 hover:text-gray-200"
-                    : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              Stories
-            </button>
-            <button
-              onClick={() => setActiveTab("poems")}
-              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeTab === "poems"
-                  ? theme === "dark"
-                    ? "bg-purple-600 text-white shadow-lg"
-                    : "bg-purple-500 text-white shadow-lg"
-                  : theme === "dark"
-                    ? "text-gray-400 hover:text-gray-200"
-                    : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              Poems
-            </button>
-          </div>
-        </div>
+      <div className="container mx-auto px-4 py-12">
+        <div className="relative overflow-hidden md:pt-0">
+  {/* === Full-width (horizontal) background === */}
+  <div className="absolute left-0 right-0 top-0 bottom-0 overflow-hidden pointer-events-none w-screen">
+    {/* Animated grid */}
+    <div
+      className={`absolute left-0 right-0 top-0 h-full -z-10 ${
+        theme === "dark"
+          ? "bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)]"
+          : "bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]"
+      } bg-[size:2rem_2rem] md:bg-[size:4rem_4rem] opacity-20`}
+      style={{ width: "100vw" }}
+    ></div>
+
+    {/* Glowing orbs */}
+    <div
+      className={`absolute top-10 md:top-20 right-10 md:right-20 w-48 md:w-96 h-48 md:h-96 rounded-full blur-3xl opacity-20 ${
+        theme === "dark" ? "bg-purple-500" : "bg-blue-400"
+      } animate-pulse`}
+    ></div>
+    <div
+      className={`absolute bottom-10 md:bottom-20 left-10 md:left-20 w-40 md:w-80 h-40 md:h-80 rounded-full blur-3xl opacity-20 ${
+        theme === "dark" ? "bg-blue-500" : "bg-purple-400"
+      } animate-pulse`}
+      style={{ animationDelay: "1s" }}
+    ></div>
+  </div>
+
+  {/* === Centered Content === */}
+  <div className="relative container mx-auto px-4 py-12 md:py-20 text-center">
+    <h1
+      className={`text-4xl md:text-7xl font-bold mb-4 md:mb-6 ${
+        theme === "dark" ? "text-white" : "text-gray-900"
+      }`}
+    >
+      Writing
+    </h1>
+    <p
+      className={`text-lg md:text-2xl max-w-3xl mx-auto ${
+        theme === "dark" ? "text-gray-300" : "text-gray-600"
+      }`}
+    >
+      My stories and poems
+    </p>
+  </div>
+
+  {/* === Toggle Switch === */}
+  <div className="flex justify-center mb-12">
+    <div
+      className={`inline-flex rounded-full p-1 ${
+        theme === "dark" ? "bg-gray-800" : "bg-gray-200"
+      }`}
+    >
+      <button
+        onClick={() => setActiveTab("stories")}
+        className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+          activeTab === "stories"
+            ? theme === "dark"
+              ? "bg-purple-600 text-white shadow-lg"
+              : "bg-purple-500 text-white shadow-lg"
+            : theme === "dark"
+              ? "text-gray-400 hover:text-gray-200"
+              : "text-gray-600 hover:text-gray-900"
+        }`}
+      >
+        Projects
+      </button>
+      <button
+        onClick={() => setActiveTab("poems")}
+        className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+          activeTab === "poems"
+            ? theme === "dark"
+              ? "bg-purple-600 text-white shadow-lg"
+              : "bg-purple-500 text-white shadow-lg"
+            : theme === "dark"
+              ? "text-gray-400 hover:text-gray-200"
+              : "text-gray-600 hover:text-gray-900"
+        }`}
+      >
+        Blogs
+      </button>
+    </div>
+  </div>
+</div>
+
+
 
           {loading ? (
             <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>Loading {activeTab} ...</p></div>

@@ -59,20 +59,41 @@ export default function Stories() {
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
       theme === "dark" 
-        ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100" 
-        : "bg-gradient-to-br from-red-50 to-red-50"
+        ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" 
+        : "bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50"
     }`}>
       <FloatingSocialSlider />
-      <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Technical</h1>
-          <p className={`text-lg ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
-            My technical projects and blog posts
-          </p>
+      <div className="container mx-auto">
+        <div className="relative overflow-hidden pt-8 md:pt-0">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Animated grid background */}
+          <div className={`absolute inset-0 ${
+            theme === "dark" 
+              ? "bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)]" 
+              : "bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]"
+          } bg-[size:4rem_4rem] md:bg-[size:4rem_4rem] bg-[size:2rem_2rem] opacity-20`}></div>
+          
+          {/* Glowing orbs */}
+          <div className={`absolute top-10 md:top-20 right-10 md:right-20 w-48 md:w-96 h-48 md:h-96 rounded-full blur-3xl opacity-20 ${
+            theme === "dark" ? "bg-purple-500" : "bg-blue-400"
+          } animate-pulse`}></div>
+          <div className={`absolute bottom-10 md:bottom-20 left-10 md:left-20 w-40 md:w-80 h-40 md:h-80 rounded-full blur-3xl opacity-20 ${
+            theme === "dark" ? "bg-blue-500" : "bg-purple-400"
+          } animate-pulse`} style={{ animationDelay: '1s' }}></div>
         </div>
 
-        {/* Toggle Switch */}
+        <div className="relative container mx-auto px-4 py-12 md:py-20 text-center">
+          <h1 className={`text-4xl md:text-7xl font-bold mb-4 md:mb-6 ${
+            theme === "dark" ? "text-white" : "text-gray-900"
+          }`}>
+            Technical
+          </h1>
+          <p className={`text-lg md:text-2xl max-w-3xl mx-auto ${
+            theme === "dark" ? "text-gray-300" : "text-gray-600"
+          }`}>
+            Explore my projects and blog posts on technology, programming, and more.
+          </p>
+        </div>
         <div className="flex justify-center mb-12">
           <div className={`inline-flex rounded-full p-1 ${
             theme === "dark" ? "bg-gray-800" : "bg-gray-200"
@@ -107,6 +128,13 @@ export default function Stories() {
             </button>
           </div>
         </div>
+      </div>
+      <div className="container mx-auto px-4 py-4">
+        {/* Header */}
+        
+      </div>
+
+        {/* Toggle Switch */}
 
           {loading ? (
             <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>Loading {activeTab} ...</p></div>

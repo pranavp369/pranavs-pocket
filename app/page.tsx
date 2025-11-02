@@ -6,33 +6,14 @@ import FloatingSocialSlider from "@/components/SocialLinking";
 
 export default function HomePage() {
   const [currentSection, setCurrentSection] = useState(0);
-  //const [theme, setTheme] = useState("light");
   const [showContent, setShowContent] = useState(false);
   const [noteOpen, setNoteOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    // Sync with theme from navbar
-    // const checkTheme = () => {
-    //   if (document.documentElement.classList.contains("dark")) {
-    //     setTheme("dark");
-    //   } else {
-    //     setTheme("light");
-    //   }
-    // };
-    
-    // checkTheme();
-    
-    // // Listen for theme changes
-    // const observer = new MutationObserver(checkTheme);
-    // observer.observe(document.documentElement, {
-    //   attributes: true,
-    //   attributeFilter: ["class"]
-    // });
 
     setMounted(true);
-
     // Trigger animation on mount
     setTimeout(() => setShowContent(true), 100);
 
@@ -51,13 +32,37 @@ export default function HomePage() {
 
   return (
     <div className="relative">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Animated grid background */}
+        <div
+          className={`absolute inset-0 ${
+            theme === "dark"
+              ? "bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)]"
+              : "bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]"
+          } bg-[size:2rem_2rem] md:bg-[size:4rem_4rem] opacity-20 animate-[slowPan_30s_linear_infinite]`}
+        ></div>
+
+        {/* Glowing orbs */}
+        <div
+          className={`absolute top-10 md:top-20 right-10 md:right-20 w-48 md:w-96 h-48 md:h-96 rounded-full blur-3xl opacity-20 ${
+            theme === "dark" ? "bg-purple-500" : "bg-blue-700"
+          } animate-pulse`}
+        ></div>
+
+        <div
+          className={`absolute bottom-10 md:bottom-20 left-10 md:left-20 w-40 md:w-80 h-40 md:h-80 rounded-full blur-3xl opacity-20 ${
+            theme === "dark" ? "bg-blue-500" : "bg-purple-700"
+          } animate-pulse`}
+          style={{ animationDelay: "1s" }}
+        ></div>
+      </div>
       {/* Section 1 - With Navbar space */}
       <section
         id="section-0"
         className={`min-h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
           theme === "dark" 
-            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100" 
-            : "bg-gradient-to-br from-red-50 to-red-50"
+            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-teal-50" 
+            : "bg-gradient-to-br from-teal-50 to-teal-50 text-grey-700"
         }`}
         style={{ minHeight: 'calc(100vh - 72px)' }}
       >
@@ -89,7 +94,7 @@ export default function HomePage() {
               <button
                 onClick={() => setNoteOpen(true)}
                 className={` font-marker inline-block transition-all duration-300 hover:scale-105 decoration-2 cursor-pointer ${
-                  theme === "dark" ? "text-yellow-300 hover:text-yellow-200" : "text-yellow-600 hover:text-yellow-700"
+                  theme === "dark" ? "text-purple-600 hover:text-purple-500" : "text-purple-400 hover:text-purple-500"
                 }`}
               >
                 CREATIVE LITTLE POCKET
@@ -142,7 +147,7 @@ export default function HomePage() {
         className={`fixed top-0 left-0 w-full h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
           theme === "dark"
             ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100"
-            : "bg-gradient-to-r from-red-50 to-red-50"
+            : "bg-gradient-to-r from-teal-50 to-teal-50"
         }`}
         style={{ 
           transform: currentSection === 1 ? 'translateY(0)' : 'translateY(100%)',
@@ -150,6 +155,30 @@ export default function HomePage() {
           zIndex: 50
         }}
       >
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Animated grid background */}
+        <div
+          className={`absolute inset-0 ${
+            theme === "dark"
+              ? "bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)]"
+              : "bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]"
+          } bg-[size:2rem_2rem] md:bg-[size:4rem_4rem] opacity-20 animate-[slowPan_30s_linear_infinite]`}
+        ></div>
+
+        {/* Glowing orbs */}
+        <div
+          className={`absolute top-10 md:top-20 right-10 md:right-20 w-48 md:w-96 h-48 md:h-96 rounded-full blur-3xl opacity-20 ${
+            theme === "dark" ? "bg-purple-500" : "bg-blue-400"
+          } animate-pulse`}
+        ></div>
+
+        <div
+          className={`absolute bottom-10 md:bottom-20 left-10 md:left-20 w-40 md:w-80 h-40 md:h-80 rounded-full blur-3xl opacity-20 ${
+            theme === "dark" ? "bg-blue-500" : "bg-purple-400"
+          } animate-pulse`}
+          style={{ animationDelay: "1s" }}
+        ></div>
+      </div>
         <FloatingSocialSlider />
         {/* Slider Toggle at Top */}
         <button
@@ -175,13 +204,7 @@ export default function HomePage() {
         </button>
 
         <div className="flex flex-col items-center">
-          {/* <div className="w-48 h-48 md:w-50 md:h-50 rounded-full overflow-hidden shadow-2xl mb-6 ring-4 ring-white ring-opacity-50">
-                  <img 
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
-                    alt="Profile"
-                    className="w-full h-full object-cover"
-                  />
-                </div> */}
+          
           <div className="w-[25vw] h-[25vw] md:w-[25vw] md:h-[25vw] max-w-80 max-h-80 rounded-full overflow-hidden shadow-2xl mb-6 ring-4 ring-white ring-opacity-50 mt-12 md:mt-16">
             <img 
               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
