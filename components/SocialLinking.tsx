@@ -85,7 +85,7 @@ export default function FloatingSocialSlider({ theme = "light" }) {
       {/* Toggle Button - Small Round Component */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-12 right-12 w-14 h-14 rounded-full shadow-2xl transition-all duration-300 z-50 flex items-center justify-center ${
+        className={`group fixed bottom-12 right-12 w-14 h-14 rounded-full shadow-2xl transition-all duration-300 z-50 flex items-center justify-center ${
           isOpen 
             ? "bg-red-500 hover:bg-red-600 rotate-45" 
             : theme === "dark"
@@ -94,6 +94,11 @@ export default function FloatingSocialSlider({ theme = "light" }) {
         } transform hover:scale-110`}
         aria-label={isOpen ? "Close social links" : "Open social links"}
       >
+        {!isOpen && (
+        <span className="absolute right-16 bg-gray-800 text-white text-sm py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+          Connect with me
+      </span>
+        )}
         {isOpen ? (
           <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

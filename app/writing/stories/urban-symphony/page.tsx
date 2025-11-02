@@ -8,21 +8,49 @@ export default function UrbanSymphony() {
   const page_name = "urban_symphony";
   return (
     <div className="min-h-screen bg-gray-900 text-white p-8 flex flex-col items-center">
-      <div className="max-w-3xl text-center">
-        <h1 className="text-4xl font-bold mb-6">Poems</h1>
-        <p className="text-gray-300 mb-12">
-          Urban Symphony
-        </p>
+      <div className="prose prose-about dark:prose-invert max-w-none text-center">
+        <h1 className="text-4xl font-bold mb-6">At the Equinox</h1>
+        
       </div>
-
+      <br />
       {/* Poem content */}
-      <div className="prose dark:prose-invert max-w-none mb-12">
-        <h2 className="text-xl font-semibold mb-2">The Silent Moon</h2>
-        <p>
-          The moon whispers softly to the sea,  
-          A quiet echo of eternity.  
-          Shadows dance on waves of white,  
-          In the calm embrace of night.
+      <div className="prose prose-about dark:prose-invert max-w-none mb-12">
+        <p className="text-left">
+          The tide ebbs and reveals orange and purple sea stars.<br />
+I have no theory of radiance,<br />
+</p>
+        <p className="text-right">
+                only that light refracts through water droplets,<br />
+                but after rain evaporates<br />
+off pine needles, the needles glisten.<br />
+</p>
+        <p className="text-left">
+
+In the courtyard, we spot the rising shell of a moon,<br />
+and, at the equinox, bathe in its gleam.<br />
+</p>
+        <p className="text-right">
+Using all the tides of starlight,<br />
+                we find<br />
+                vicissitude is our charm.<br />
+</p>
+        <p className="text-left">
+On the mud flats off Homer,<br />
+I catch the tremor when waves start to slide back in;<br />
+</p>
+        <p className="text-right">
+and, from Roanoke, you carry<br />
+                the leafing jade smoke of willows.<br />
+</p>
+        <p className="text-left">
+Looping out into the world, we thread<br />
+                and return. The lapping waves<br />
+</p>
+        <p className="text-center">
+cover an expanse of mussels clustered on rocks;<br />
+and, giving shape to what is unspoken,<br />
+
+                forsythia buds and blooms in our arms.<br />
         </p>
       </div>
 

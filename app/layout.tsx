@@ -45,31 +45,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   
   return (
     <html lang="en" className={`${inter.className} ${playfair.variable} ${marker.variable} ${monoton.variable} ${rubik_glitch.variable} ${bungee_shade.variable} ${rougescript.variable}`} suppressHydrationWarning>
-      <body>
+      <body className="overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-            <main>{children}</main>
+            <main className="pt-[72px]">{children}</main>
         </ThemeProvider> 
       </body>
     </html>
   )
 }
-
-
-
-// export default function RootLayout({
-//   children,
-// }: {
-//   children: React.ReactNode
-// }) {
-//   return (
-//     <html lang="en" suppressHydrationWarning>
-//       <body>
-//         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-//           <Nav />
-//           {children}
-//         </ThemeProvider>
-//       </body>
-//     </html>
-//   )
-// }
