@@ -129,14 +129,9 @@ export default function Stories() {
           </div>
         </div>
       </div>
-      <div className="container mx-auto px-4 py-4">
-        {/* Header */}
-        
-      </div>
-
-        {/* Toggle Switch */}
-
-          {loading ? (
+    </div>
+    <div className="container mx-auto px-4 py-4">
+      {loading ? (
             <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>Loading {activeTab} ...</p></div>
              //<p className="text-center">Loading {activeTab}...</p>
             ) : article.length === 0 ? (
