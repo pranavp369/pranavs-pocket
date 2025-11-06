@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
 import FloatingSocialSlider from "@/components/SocialLinking";
+import BackgroundThemes from "@/components/BackgroundThemes";
 
 type Article = {
   id: number;
@@ -63,8 +64,9 @@ export default function Stories() {
         : "bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50"
     }`}>
       <FloatingSocialSlider />
+      {/* <BackgroundThemes theme={theme === "dark" ? "dark" : "light"} /> */}
       <div className="container mx-auto">
-        <div className="relative overflow-hidden pt-8 md:pt-0">
+        <div className="relative overflow-hidden pt-1 md:pt-0">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Animated grid background */}
           <div className={`absolute inset-0 ${
@@ -94,13 +96,16 @@ export default function Stories() {
             Explore my projects and blog posts on technology, programming, and more.
           </p>
         </div>
-        <div className="flex justify-center mb-12">
-          <div className={`inline-flex rounded-full p-1 ${
+      </div>
+    </div>
+
+    <div className="flex justify-center mb-1 p-2">
+          <div className={`inline-flex rounded-full p-3 ${
             theme === "dark" ? "bg-gray-800" : "bg-gray-200"
           }`}>
             <button
               onClick={() => setActiveTab("projects")}
-              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+              className={`px-8 py-1 rounded-full font-semibold transition-all duration-300 ${
                 activeTab === "projects"
                   ? theme === "dark"
                     ? "bg-purple-600 text-white shadow-lg"
@@ -128,8 +133,7 @@ export default function Stories() {
             </button>
           </div>
         </div>
-      </div>
-    </div>
+
     <div className="container mx-auto px-4 py-4">
       {loading ? (
             <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>Loading {activeTab} ...</p></div>

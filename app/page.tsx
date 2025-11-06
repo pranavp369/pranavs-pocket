@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import FloatingSocialSlider from "@/components/SocialLinking"; 
+import  DotMatrixBackground  from "@/components/BackgroundThemes";
 
 
 export default function HomePage() {
@@ -41,9 +42,16 @@ export default function HomePage() {
               : "bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]"
           } bg-[size:2rem_2rem] md:bg-[size:4rem_4rem] opacity-20 animate-[slowPan_30s_linear_infinite]`}
         ></div>
-
+      <DotMatrixBackground theme={theme === "dark" ? "dark" : "light"} />
+      {/* Corner accent boxes */}
+        <div className={`absolute top-10 left-10 w-40 h-40 border-l-4 border-t-4 rounded-tl-3xl ${
+          theme === "dark" ? "border-purple-500/30" : "border-blue-500/30"
+        }`}></div>
+        <div className={`absolute bottom-10 right-10 w-40 h-40 border-r-4 border-b-4 rounded-br-3xl ${
+          theme === "dark" ? "border-blue-500/30" : "border-purple-500/30"
+        }`}></div>
         {/* Glowing orbs */}
-        <div
+        {/* <div
           className={`absolute top-10 md:top-20 right-10 md:right-20 w-48 md:w-96 h-48 md:h-96 rounded-full blur-3xl opacity-20 ${
             theme === "dark" ? "bg-purple-500" : "bg-blue-700"
           } animate-pulse`}
@@ -54,15 +62,15 @@ export default function HomePage() {
             theme === "dark" ? "bg-blue-500" : "bg-purple-700"
           } animate-pulse`}
           style={{ animationDelay: "1s" }}
-        ></div>
+        ></div> */}
       </div>
       {/* Section 1 - With Navbar space */}
       <section
         id="section-0"
         className={`min-h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
           theme === "dark" 
-            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-teal-50" 
-            : "bg-gradient-to-br from-teal-50 to-teal-50 text-grey-700"
+            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-sky-100" 
+            : "bg-gradient-to-br from-fuchsia-50  to-red-50 text-gray-600"
         }`}
         style={{ minHeight: 'calc(100vh - 72px)' }}
       >
@@ -94,7 +102,9 @@ export default function HomePage() {
               <button
                 onClick={() => setNoteOpen(true)}
                 className={` font-marker inline-block transition-all duration-300 hover:scale-105 decoration-2 cursor-pointer ${
-                  theme === "dark" ? "text-purple-600 hover:text-purple-500" : "text-purple-400 hover:text-purple-500"
+                  theme === "dark"
+                           ? "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+                           : "bg-gradient-to-r from-purple-300 via-pink-300 to-blue-300 bg-clip-text text-transparent"
                 }`}
               >
                 CREATIVE LITTLE POCKET
@@ -113,7 +123,7 @@ export default function HomePage() {
 
           {/* Decorative Line */}
           <div className={`mt-8 w-24 h-1 rounded-full transition-all duration-1000 delay-700 ${
-            theme === "dark" ? "bg-white" : "bg-black"
+            theme === "dark" ? "bg-white" : "bg-gray-600"
           } ${showContent ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}></div>
         </div>
         
@@ -157,16 +167,25 @@ export default function HomePage() {
       >
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Animated grid background */}
-        <div
+        <DotMatrixBackground theme={theme === "dark" ? "dark" : "light"} />
+
+        <div className={`absolute top-10 left-10 w-40 h-40 border-l-4 border-t-4 rounded-tl-3xl ${
+          theme === "dark" ? "border-purple-500/30" : "border-blue-500/30"
+        }`}></div>
+        <div className={`absolute bottom-10 right-10 w-40 h-40 border-r-4 border-b-4 rounded-br-3xl ${
+          theme === "dark" ? "border-blue-500/30" : "border-purple-500/30"
+        }`}></div>
+        
+        {/* <div
           className={`absolute inset-0 ${
             theme === "dark"
               ? "bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)]"
               : "bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]"
           } bg-[size:2rem_2rem] md:bg-[size:4rem_4rem] opacity-20 animate-[slowPan_30s_linear_infinite]`}
-        ></div>
+        ></div> */}
 
         {/* Glowing orbs */}
-        <div
+        {/* <div
           className={`absolute top-10 md:top-20 right-10 md:right-20 w-48 md:w-96 h-48 md:h-96 rounded-full blur-3xl opacity-20 ${
             theme === "dark" ? "bg-purple-500" : "bg-blue-400"
           } animate-pulse`}
@@ -177,7 +196,7 @@ export default function HomePage() {
             theme === "dark" ? "bg-blue-500" : "bg-purple-400"
           } animate-pulse`}
           style={{ animationDelay: "1s" }}
-        ></div>
+        ></div> */}
       </div>
         <FloatingSocialSlider />
         {/* Slider Toggle at Top */}
@@ -205,7 +224,7 @@ export default function HomePage() {
 
         <div className="flex flex-col items-center">
           
-          <div className="w-[25vw] h-[25vw] md:w-[25vw] md:h-[25vw] max-w-80 max-h-80 rounded-full overflow-hidden shadow-2xl mb-6 ring-4 ring-white ring-opacity-50 mt-12 md:mt-16">
+          <div className="w-[25vw] h-[25vw] md:w-[12vw] md:h-[12vw] max-w-80 max-h-80 rounded-full overflow-hidden shadow-2xl mb-6 ring-2 ring-white ring-opacity-50 mt-12 md:mt-16">
             <img 
               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
               alt="Profile"
@@ -221,7 +240,7 @@ export default function HomePage() {
         
 
 
-        <div className="flex-1 flex flex-col justify-center items-center text-center px-4 md:px-8">
+        {/* <div className="flex-1 flex flex-col justify-center items-center text-center px-4 md:px-8">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">What I Do</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mt-6 md:mt-8 max-w-4xl w-full">
             <div className={`p-4 md:p-6 rounded-lg backdrop-blur-sm transition-colors ${
@@ -249,7 +268,7 @@ export default function HomePage() {
               <p className="text-xs md:text-sm">Capturing moments in time</p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="mb-6 md:mb-8"></div>
       </section>

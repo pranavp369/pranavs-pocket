@@ -314,6 +314,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import  DotMatrixBackground  from "@/components/BackgroundThemes";
 
 export default function StoriesPage() {
   const [activeTab, setActiveTab] = useState("stories"); // "stories" or "poems"
@@ -402,11 +403,14 @@ export default function StoriesPage() {
   const currentData = activeTab === "stories" ? stories : poems;
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${
-      theme === "dark" 
-        ? "bg-gray-900 text-gray-100" 
-        : "bg-gray-50 text-gray-900"
-    }`}>
+    <div className="relative">
+    <div className={`min-h-screen pt-[72px] relative transition-colors duration-300 ${
+    theme === "dark" 
+      ? "bg-gray-900 text-gray-100" 
+      : "bg-gray-50 text-gray-900"
+  }`}>
+    <DotMatrixBackground theme={theme === "dark" ? "dark" : "light"} />
+    <div className="relative z-10">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-8">
@@ -505,6 +509,7 @@ export default function StoriesPage() {
             ))}
           </div>
         </div>
+        </div>
 
         {/* Empty State */}
         {currentData.length === 0 && (
@@ -516,5 +521,336 @@ export default function StoriesPage() {
         )}
       </div>
     </div>
+    </div>
   );
 }
+
+
+
+// "use client";
+// import { useState, useEffect } from "react";
+// import { useTheme } from "next-themes";
+
+
+// // Theme 1: Geometric Grid with Subtle Patterns
+// function GeometricBackground({ theme }: { theme: "dark" | "light" }) {
+//   return (
+//     <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//       {/* Diagonal lines pattern */}
+//       <div className={`absolute inset-0 opacity-20 ${
+//         theme === "dark"
+//           ? "bg-[linear-gradient(45deg,#374151_1px,transparent_1px),linear-gradient(-45deg,#374151_1px,transparent_1px)]"
+//           : "bg-[linear-gradient(45deg,#d1d5db_1px,transparent_1px),linear-gradient(-45deg,#d1d5db_1px,transparent_1px)]"
+//       } bg-[size:20px_20px]`}></div>
+      
+//       {/* Floating squares */}
+//       {[...Array(6)].map((_, i) => (
+//         <div
+//           key={i}
+//           className={`absolute w-32 h-32 border-2 rounded-lg ${
+//             theme === "dark" ? "border-purple-500/20" : "border-blue-400/20"
+//           }`}
+//           style={{
+//             top: `${10 + i * 15}%`,
+//             left: `${5 + (i % 2) * 80}%`,
+//             transform: `rotate(${i * 15}deg)`,
+//             animation: `float ${8 + i * 2}s ease-in-out infinite`,
+//             animationDelay: `${i * 0.5}s`
+//           }}
+//         ></div>
+//       ))}
+      
+//       {/* Gradient overlay */}
+//       <div className={`absolute inset-0 ${
+//         theme === "dark"
+//           ? "bg-gradient-to-br from-purple-900/10 via-transparent to-blue-900/10"
+//           : "bg-gradient-to-br from-blue-100/30 via-transparent to-purple-100/30"
+//       }`}></div>
+//     </div>
+//   );
+// }
+
+// // Theme 2: Topographic/Contour Lines
+// function TopographicBackground({ theme }: { theme: "dark" | "light" }) {
+//   return (
+//     <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//       {/* Contour circles */}
+//       {[...Array(8)].map((_, i) => (
+//         <div key={`circle-${i}`}>
+//           <div
+//             className={`absolute rounded-full border ${
+//               theme === "dark" ? "border-purple-500/15" : "border-blue-400/15"
+//             }`}
+//             style={{
+//               width: `${200 + i * 150}px`,
+//               height: `${200 + i * 150}px`,
+//               top: '20%',
+//               left: '10%',
+//               transform: 'translate(-50%, -50%)',
+//             }}
+//           ></div>
+//           <div
+//             className={`absolute rounded-full border ${
+//               theme === "dark" ? "border-blue-500/15" : "border-purple-400/15"
+//             }`}
+//             style={{
+//               width: `${150 + i * 120}px`,
+//               height: `${150 + i * 120}px`,
+//               bottom: '20%',
+//               right: '15%',
+//               transform: 'translate(50%, 50%)',
+//             }}
+//           ></div>
+//         </div>
+//       ))}
+      
+//       {/* Gradient mesh overlay */}
+//       <div className={`absolute inset-0 ${
+//         theme === "dark"
+//           ? "bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.1),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(59,130,246,0.1),transparent_50%)]"
+//           : "bg-[radial-gradient(ellipse_at_top_left,rgba(59,130,246,0.15),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(139,92,246,0.15),transparent_50%)]"
+//       }`}></div>
+//     </div>
+//   );
+// }
+
+// // Theme 3: Dot Matrix / Tech Grid
+// function DotMatrixBackground({ theme }: { theme: "dark" | "light" }) {
+//   return (
+//     <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//       {/* Dot pattern */}
+//       <div className={`absolute inset-0 opacity-40 ${
+//         theme === "dark"
+//           ? "bg-[radial-gradient(circle,#6366f1_1px,transparent_1px)]"
+//           : "bg-[radial-gradient(circle,#93c5fd_1px,transparent_1px)]"
+//       } bg-[size:30px_30px]`}></div>
+      
+//       {/* Animated scan lines */}
+//       <div
+//         className={`absolute inset-0 ${
+//           theme === "dark"
+//             ? "bg-gradient-to-b from-transparent via-purple-500/5 to-transparent"
+//             : "bg-gradient-to-b from-transparent via-blue-400/10 to-transparent"
+//         }`}
+//         style={{
+//           animation: 'scan 8s linear infinite',
+//         }}
+//       ></div>
+      
+//       {/* Corner accent boxes */}
+//       <div className={`absolute top-10 left-10 w-40 h-40 border-l-4 border-t-4 rounded-tl-3xl ${
+//         theme === "dark" ? "border-purple-500/30" : "border-blue-500/30"
+//       }`}></div>
+//       <div className={`absolute bottom-10 right-10 w-40 h-40 border-r-4 border-b-4 rounded-br-3xl ${
+//         theme === "dark" ? "border-blue-500/30" : "border-purple-500/30"
+//       }`}></div>
+      
+//       {/* Hexagon pattern overlay */}
+//       <div className="absolute inset-0 opacity-5">
+//         <svg width="100%" height="100%">
+//           <defs>
+//             <pattern id="hexagons" x="0" y="0" width="100" height="86.6" patternUnits="userSpaceOnUse">
+//               <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke={theme === "dark" ? "#8b5cf6" : "#3b82f6"} strokeWidth="1"/>
+//             </pattern>
+//           </defs>
+//           <rect width="100%" height="100%" fill="url(#hexagons)" />
+//         </svg>
+//       </div>
+      
+//       {/* Gradient overlay */}
+//       <div className={`absolute inset-0 ${
+//         theme === "dark"
+//           ? "bg-gradient-to-tr from-gray-900 via-transparent to-gray-900"
+//           : "bg-gradient-to-tr from-gray-50/50 via-transparent to-gray-50/50"
+//       }`}></div>
+//     </div>
+//   );
+// }
+
+// // Demo Component
+// export default function BackgroundThemesDemo() {
+//   const [mounted, setMounted] = useState(false);
+//   const [selectedTheme, setSelectedTheme] = useState(1);
+//   const { theme, setTheme } = useTheme();
+
+//   useEffect(() => {
+//     setMounted(true);
+//   }, []);
+
+//   if (!mounted) return null;
+
+//   const backgrounds = [
+//     { name: "Geometric Grid", component: GeometricBackground },
+//     { name: "Topographic", component: TopographicBackground },
+//     { name: "Dot Matrix", component: DotMatrixBackground }
+//   ];
+
+//   const BackgroundComponent = backgrounds[selectedTheme - 1].component;
+
+//   return (
+//     <div className={`min-h-screen transition-colors duration-300 relative ${
+//       theme === "dark" 
+//         ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" 
+//         : "bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50"
+//     }`}>
+//       {/* Background */}
+//       <BackgroundComponent theme={theme} />
+
+//       {/* Content */}
+//       <div className="relative z-10 container mx-auto px-4 py-20">
+//         <div className="text-center mb-12">
+//           <h1 className={`text-5xl md:text-6xl font-bold mb-4 ${
+//             theme === "dark" ? "text-white" : "text-gray-900"
+//           }`}>
+//             Background Theme Styles
+//           </h1>
+//           <p className={`text-xl mb-8 ${
+//             theme === "dark" ? "text-gray-300" : "text-gray-600"
+//           }`}>
+//             Three different background styles for your bio page
+//           </p>
+//           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+//             Gradient Text in Tailwind
+//           </h1>
+//         </div>
+
+
+//         {/* Controls */}
+//         <div className="max-w-4xl mx-auto mb-16">
+//           <div className={`p-6 rounded-2xl backdrop-blur-md ${
+//             theme === "dark"
+//               ? "bg-gray-800/70 border border-gray-700"
+//               : "bg-white/70 border border-gray-200"
+//           }`}>
+//             <h2 className={`text-2xl font-bold mb-4 ${
+//               theme === "dark" ? "text-white" : "text-gray-900"
+//             }`}>
+//               Controls
+//             </h2>
+            
+//             {/* Theme selector */}
+//             <div className="mb-6">
+//               <label className={`block text-sm font-semibold mb-3 ${
+//                 theme === "dark" ? "text-gray-300" : "text-gray-700"
+//               }`}>
+//                 Select Background Style:
+//               </label>
+//               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+//                 {backgrounds.map((bg, index) => (
+//                   <button
+//                     key={index}
+//                     onClick={() => setSelectedTheme(index + 1)}
+//                     className={`p-4 rounded-xl font-semibold transition-all duration-300 ${
+//                       selectedTheme === index + 1
+//                         ? theme === "dark"
+//                           ? "bg-gradient-to-br from-purple-600 to-blue-600 text-white shadow-lg scale-105"
+//                           : "bg-gradient-to-br from-blue-500 to-purple-500 text-white shadow-lg scale-105"
+//                         : theme === "dark"
+//                           ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+//                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+//                     }`}
+//                   >
+//                     {bg.name}
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+
+//             {/* Light/Dark toggle */}
+//             <div className="flex items-center justify-between">
+//               <span className={`font-semibold ${
+//                 theme === "dark" ? "text-gray-300" : "text-gray-700"
+//               }`}>
+//                 Toggle Light/Dark Mode:
+//               </span>
+//               <button
+//                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+//                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+//                   theme === "dark"
+//                     ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:shadow-lg"
+//                     : "bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:shadow-lg"
+//                 }`}
+//               >
+//                 {theme === "dark" ? "🌙 Dark" : "☀️ Light"}
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Description Cards */}
+//         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+//           <div className={`p-6 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 ${
+//             theme === "dark"
+//               ? "bg-gray-800/70 border border-gray-700"
+//               : "bg-white/70 border border-gray-200"
+//           }`}>
+//             <h3 className={`text-xl font-bold mb-3 ${
+//               theme === "dark" ? "text-purple-400" : "text-blue-600"
+//             }`}>
+//               1. Geometric Grid
+//             </h3>
+//             <p className={`text-sm ${
+//               theme === "dark" ? "text-gray-300" : "text-gray-600"
+//             }`}>
+//               Modern and clean with diagonal lines, floating squares, and subtle gradients. Perfect for a professional tech look.
+//             </p>
+//           </div>
+
+//           <div className={`p-6 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 ${
+//             theme === "dark"
+//               ? "bg-gray-800/70 border border-gray-700"
+//               : "bg-white/70 border border-gray-200"
+//           }`}>
+//             <h3 className={`text-xl font-bold mb-3 ${
+//               theme === "dark" ? "text-purple-400" : "text-blue-600"
+//             }`}>
+//               2. Topographic
+//             </h3>
+//             <p className={`text-sm ${
+//               theme === "dark" ? "text-gray-300" : "text-gray-600"
+//             }`}>
+//               Organic contour lines creating depth and movement. Elegant and sophisticated with radial gradients.
+//             </p>
+//           </div>
+
+//           <div className={`p-6 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 ${
+//             theme === "dark"
+//               ? "bg-gray-800/70 border border-gray-700"
+//               : "bg-white/70 border border-gray-200"
+//           }`}>
+//             <h3 className={`text-xl font-bold mb-3 ${
+//               theme === "dark" ? "text-purple-400" : "text-blue-600"
+//             }`}>
+//               3. Dot Matrix
+//             </h3>
+//             <p className={`text-sm ${
+//               theme === "dark" ? "text-gray-300" : "text-gray-600"
+//             }`}>
+//               Futuristic tech grid with dots, hexagons, scan lines, and corner accents. Perfect for a developer portfolio.
+//             </p>
+//           </div>
+//         </div>
+//       </div>
+
+//       <style jsx>{`
+//         @keyframes float {
+//           0%, 100% {
+//             transform: translateY(0) rotate(0deg);
+//           }
+//           50% {
+//             transform: translateY(-20px) rotate(5deg);
+//           }
+//         }
+
+//         @keyframes scan {
+//           0% {
+//             transform: translateY(-100%);
+//           }
+//           100% {
+//             transform: translateY(200%);
+//           }
+//         }
+//       `}</style>
+//     </div>
+//   );
+// }

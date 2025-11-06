@@ -99,7 +99,7 @@ export default function AboutPage() {
       {/* Curved Timeline Section */}
       <div className="container mx-auto px-4 py-12 md:py-20">
         <div className="relative max-w-6xl mx-auto">
-          {/* Center curved line - SVG path - Now visible on all devices */}
+          {/* Center curved line - SVG path - Adjusted for mobile */}
           <svg 
             className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2 pointer-events-none" 
             style={{ zIndex: 0 }}
@@ -113,38 +113,52 @@ export default function AboutPage() {
                 <stop offset="100%" className={theme === "dark" ? "text-purple-500" : "text-blue-500"} stopColor="currentColor" stopOpacity="0.8" />
               </linearGradient>
             </defs>
+            {/* Straight line for mobile, curved for desktop */}
             <path
+              className="hidden md:block"
               d="M 400 0 Q 300 200, 400 400 Q 500 600, 400 800 Q 300 1000, 400 1200 Q 500 1400, 400 1600 Q 300 1800, 400 2000"
               stroke="url(#lineGradient)"
               strokeWidth="3"
               fill="none"
-              className="drop-shadow-lg"
+            />
+            <path
+              className="md:hidden"
+              d="M 400 0 L 400 2000"
+              stroke="url(#lineGradient)"
+              strokeWidth="3"
+              fill="none"
             />
           </svg>
 
           {/* Timeline Items */}
-          <div className="relative space-y-16 md:space-y-24">
+          <div className="relative space-y-12 md:space-y-24">
             {timelineItems.map((item, index) => (
               <div
                 key={index}
-                className="relative flex items-center justify-center md:justify-start md:even:justify-end"
+                className={`relative flex items-center justify-center ${
+                  index % 2 === 0 ? "md:justify-start" : "md:justify-end"
+                }`}
               >
                 {/* Timeline card */}
-                <div className="w-full md:w-5/12">
-                  <div className={`group relative p-6 md:p-8 rounded-3xl md:rounded-[12rem] backdrop-blur-md transition-all duration-500 hover:scale-[1.03] ${
+                <div className="w-full max-w-md md:max-w-none md:w-5/12">
+                  <div className={`group relative p-6 md:p-8 rounded-3xl md:rounded-[2rem] backdrop-blur-md transition-all duration-500 hover:scale-[1.03] ${
                     theme === "dark"
                       ? "bg-gradient-to-br from-gray-800/90 to-gray-900/90 border-2 border-gray-700/50 hover:border-purple-500/50 hover:shadow-[0_20px_60px_-15px_rgba(168,85,247,0.4)]"
                       : "bg-gradient-to-br from-white/90 to-gray-50/90 border-2 border-gray-200/50 hover:border-blue-500/50 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.4)]"
                   }`}>
+                    {/* Decorative corner accent */}
+                    <div className={`absolute top-0 right-0 w-16 h-16 md:w-24 md:h-24 rounded-bl-[2rem] md:rounded-bl-[3rem] rounded-tr-3xl md:rounded-tr-[2rem] opacity-10 ${
+                      theme === "dark" ? "bg-purple-500" : "bg-blue-500"
+                    }`}></div>
 
-                    {/* Icon */}
-                    {/* <div className={`absolute -top-5 right-6 md:-top-6 md:${item.side === "left" ? "right-8 md:right-[-2.5rem]" : "left-8 md:left-[-2.5rem]"} w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-[12rem] flex items-center justify-center text-3xl md:text-4xl shadow-2xl ${
+                    {/* Icon - Consistent positioning */}
+                    <div className={`absolute -top-5 left-6 md:-top-6 md:left-8 md:${index % 2 === 0 ? "md:left-8 lg:left-auto lg:-right-10" : "md:left-8 lg:right-auto lg:-left-10"} w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-[1.2rem] flex items-center justify-center text-3xl md:text-4xl shadow-2xl ${
                       theme === "dark"
                         ? "bg-gradient-to-br from-purple-600 via-purple-500 to-blue-600 shadow-purple-500/50"
                         : "bg-gradient-to-br from-blue-500 via-blue-400 to-purple-500 shadow-blue-500/50"
                     } group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 backdrop-blur-sm`}>
                       <span className="drop-shadow-lg">{item.icon}</span>
-                    </div> */}
+                    </div>
 
                     {/* Year badge */}
                     <div className={`inline-flex items-center px-4 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold mb-3 md:mb-4 ${
