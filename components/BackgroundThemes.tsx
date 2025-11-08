@@ -126,7 +126,7 @@ export default function DotMatrixBackground({ theme }: { theme: "dark" | "light"
         <div className={`absolute inset-0 ${
           theme === "dark"
             ? "bg-gradient-to-r from-gray-900 via-transparent to-gray-900"
-            : "bg-gradient-to-r from-sky-100 via-transparent to-sky-100"
+            : "bg-gradient-to-r from-sky-100 via-transparent to-sky-1     00"
         }`}></div>
       </div>
 

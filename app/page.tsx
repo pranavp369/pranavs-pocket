@@ -33,16 +33,17 @@ export default function HomePage() {
 
   return (
     <div className="relative">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Animated grid background */}
-        <div
-          className={`absolute inset-0 ${
-            theme === "dark"
-              ? "bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)]"
-              : "bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]"
-          } bg-[size:2rem_2rem] md:bg-[size:4rem_4rem] opacity-20 animate-[slowPan_30s_linear_infinite]`}
-        ></div>
-      <DotMatrixBackground theme={theme === "dark" ? "dark" : "light"} />
+      {/* Section 1 - With Navbar space */}
+      <section
+        id="section-0"
+        className={`min-h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
+          theme === "dark" 
+            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-sky-100" 
+            : "bg-gradient-to-br from-sky-50 via-fuchsia-50 to-sky-50 text-gray-600"
+        }`}
+        style={{ minHeight: 'calc(100vh - 72px)' }}
+      >
+        <DotMatrixBackground theme={theme === "dark" ? "dark" : "light"} />
       {/* Corner accent boxes */}
         <div className={`absolute top-10 left-10 w-40 h-40 border-l-4 border-t-4 rounded-tl-3xl ${
           theme === "dark" ? "border-purple-500/30" : "border-blue-500/30"
@@ -50,6 +51,7 @@ export default function HomePage() {
         <div className={`absolute bottom-10 right-10 w-40 h-40 border-r-4 border-b-4 rounded-br-3xl ${
           theme === "dark" ? "border-blue-500/30" : "border-purple-500/30"
         }`}></div>
+
         {/* Glowing orbs */}
         {/* <div
           className={`absolute top-10 md:top-20 right-10 md:right-20 w-48 md:w-96 h-48 md:h-96 rounded-full blur-3xl opacity-20 ${
@@ -63,17 +65,8 @@ export default function HomePage() {
           } animate-pulse`}
           style={{ animationDelay: "1s" }}
         ></div> */}
-      </div>
-      {/* Section 1 - With Navbar space */}
-      <section
-        id="section-0"
-        className={`min-h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
-          theme === "dark" 
-            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-sky-100" 
-            : "bg-gradient-to-br from-fuchsia-50  to-red-50 text-gray-600"
-        }`}
-        style={{ minHeight: 'calc(100vh - 72px)' }}
-      >
+
+
         <div className="flex-1 flex flex-col justify-center items-center text-center px-4 md:px-8">
           {/* <FloatingSocialSlider /> */}
           {/* Main Content */}
@@ -133,7 +126,7 @@ export default function HomePage() {
           className="mb-6 md:mb-8 flex flex-col items-center animate-bounce cursor-pointer group"
         >
           <span className="text-xs md:text-sm mb-2 opacity-75 group-hover:opacity-100 transition">
-            Scroll Down
+            About Me
           </span>
           <svg
             className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition"
@@ -156,8 +149,8 @@ export default function HomePage() {
         id="section-1"
         className={`fixed top-0 left-0 w-full h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
           theme === "dark"
-            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100"
-            : "bg-gradient-to-r from-teal-50 to-teal-50"
+            ? "bg-gradient-to-r from-gray-800 via-grey-900 to-gray-800 text-sky-100"
+            : "bg-gradient-to-r from-sky-50 via-fuchsia-50 to-sky-50 text-gray-600"
         }`}
         style={{ 
           transform: currentSection === 1 ? 'translateY(0)' : 'translateY(100%)',
@@ -222,9 +215,9 @@ export default function HomePage() {
           </span>
         </button>
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center text-center">
           
-          <div className="w-[25vw] h-[25vw] md:w-[12vw] md:h-[12vw] max-w-80 max-h-80 rounded-full overflow-hidden shadow-2xl mb-6 ring-2 ring-white ring-opacity-50 mt-12 md:mt-16">
+          <div className="w-[18vw] h-[18vw] md:w-[10vw] md:h-[10vw] max-w-80 max-h-80 rounded-full overflow-hidden shadow-2xl mb-6 ring-2 ring-white ring-opacity-50 mt-0 md:mt-0">
             <img 
               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
               alt="Profile"
@@ -232,8 +225,10 @@ export default function HomePage() {
             />
           </div>
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Hi, I'm Pranav</h2>
-          <p className="text-base md:text-lg max-w-md">
-            A passionate creator exploring technology, words, and imagery
+          <p className="font-marker text-base md:text-lg text-justify max-w-[90%] md:max-w-[72rem] px-4 md:px-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et diam id elit viverra lobortis ut sed enim. Aliquam erat volutpat. Morbi at dapibus tortor. Phasellus tristique lacinia erat, eget luctus nibh luctus sed. Maecenas gravida odio quis elit vulputate ultrices. Proin interdum sit amet nulla in egestas. Integer sit amet congue erat, et commodo mi. Suspendisse vel elit lectus. Integer efficitur nulla lorem, non tincidunt nisl euismod vel. Nullam nec enim nisl. Duis volutpat placerat nisl et dignissim. Sed vulputate mattis eros a fringilla.
+
+      Quisque sapien dolor, interdum euismod dignissim ac, pretium convallis elit. Donec placerat nulla nec est efficitur, et semper elit ultrices. Maecenas commodo nulla quis aliquet bibendum. Proin pretium arcu elit, ac hendrerit urna lobortis ac. Duis nec dolor quis libero rutrum consectetur. Nullam eget risus ac diam mattis blandit. Vivamus id sem rutrum nisl sagittis lacinia. Vivamus ut commodo sapien. Etiam pulvinar tortor vestibulum ipsum tristique, venenatis venenatis dui iaculis. Cras vehicula ultrices ligula at tempor.
           </p>
         </div>
 

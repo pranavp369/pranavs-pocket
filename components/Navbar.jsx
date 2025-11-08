@@ -104,12 +104,12 @@ export default function Navbar() {
       )}
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex space-x-6 text-lg">
-        <Link href="/" className="hover:opacity-80 transition">Home</Link>
-        <Link href="/bio" className="hover:opacity-80 transition">Bio</Link>
-        <Link href="/technical" className="hover:opacity-80 transition">Projects</Link>
-        <Link href="/writing" className="hover:opacity-80 transition">Stories</Link>
-        <Link href="/poems" className="hover:opacity-80 transition">Poems</Link>
+      <div className="font-marker hidden md:flex space-x-6 text-lg">
+        {/* <Link href="/" className="hover:opacity-80 transition">Home</Link> */}
+        {/* <Link href="/bio" className="hover:opacity-80 transition">Bio</Link> */}
+        <Link href="/technical" className="hover:opacity-80 transition">Technical</Link>
+        <Link href="/writing" className="hover:opacity-80 transition">Writing</Link>
+        {/* <Link href="/poems" className="hover:opacity-80 transition">Poems</Link> */}
         <Link href="/photography" className="hover:opacity-80 transition">Photography</Link>
       </div>
 
@@ -136,42 +136,42 @@ export default function Navbar() {
           </div>
 
           {/* Menu Items */}
-          <div className="flex flex-col justify-center items-center h-[calc(100vh-72px)] space-y-8 text-2xl">
-            <Link 
+          <div className="flex flex-col font-marker justify-center items-center h-[calc(100vh-72px)] space-y-8 text-2xl">
+            {/* <Link 
               href="/" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-3 px-6 rounded transition w-64 text-center"
             >
               Home
-            </Link>
-            <Link 
+            </Link> */}
+            {/* <Link 
               href="/bio" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-3 px-6 rounded transition w-64 text-center"
             >
               Bio
-            </Link>
+            </Link> */}
             <Link 
-              href="/projects" 
+              href="/technical" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-3 px-6 rounded transition w-64 text-center"
             >
-              Projects
+              Technical
             </Link>
             <Link 
-              href="/stories" 
+              href="/Writing" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-3 px-6 rounded transition w-64 text-center"
             >
-              Stories
+              Writing
             </Link>
-            <Link 
+            {/* <Link 
               href="/poems" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-3 px-6 rounded transition w-64 text-center"
             >
               Poems
-            </Link>
+            </Link> */}
             <Link 
               href="/photography" 
               onClick={closeMenu} 

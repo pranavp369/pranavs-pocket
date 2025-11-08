@@ -64,7 +64,7 @@ export default function Stories() {
         }`}>
           <FloatingSocialSlider />
           <div className="container mx-auto">
-            <div className="relative overflow-hidden pt-8 md:pt-0">
+            <div className="relative overflow-hidden pt-1 md:pt-0">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               {/* Animated grid background */}
               <div className={`absolute inset-0 ${
@@ -94,7 +94,10 @@ export default function Stories() {
                 My thoughts, stories, and poems brought to life through words.
               </p>
             </div>
-            <div className="flex justify-center mb-12">
+          </div>
+        </div>
+
+        <div className="flex justify-center mb-1 p-2">
               <div className={`inline-flex rounded-full p-1 ${
                 theme === "dark" ? "bg-gray-800" : "bg-gray-200"
               }`}>
@@ -128,8 +131,8 @@ export default function Stories() {
                 </button>
               </div>
             </div>
-          </div>
-        </div>
+
+
         <div className="container mx-auto px-4 py-4">
           {loading ? (
             <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>Loading {activeTab} ...</p></div>
