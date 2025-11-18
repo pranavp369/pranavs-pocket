@@ -61,7 +61,7 @@ export default function Stories() {
     <div className={`min-h-screen transition-colors duration-300 ${
       theme === "dark" 
         ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" 
-        : "bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50"
+        : "bg-gradient-to-br from-amber-50 via-amber-50 to-amber-50"
     }`}>
       <FloatingSocialSlider />
       {/* <BackgroundThemes theme={theme === "dark" ? "dark" : "light"} /> */}
@@ -101,7 +101,7 @@ export default function Stories() {
 
     <div className="flex justify-center mb-1 p-2">
           <div className={`inline-flex rounded-full p-3 ${
-            theme === "dark" ? "bg-gray-800" : "bg-gray-200"
+            theme === "dark" ? "bg-gray-800" : "bg-amber-50"
           }`}>
             <button
               onClick={() => setActiveTab("projects")}
@@ -152,7 +152,7 @@ export default function Stories() {
                 <div className={`p-6 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                   theme === "dark" 
                     ? "bg-gray-800 hover:bg-gray-750" 
-                    : "bg-white hover:bg-gray-50"
+                    : "bg-amber-50 hover:bg-gray-50"
                 }`}>
                   {/* Title */}
                   <h3 className={`text-xl md:text-2xl font-bold mb-3 transition-colors ${

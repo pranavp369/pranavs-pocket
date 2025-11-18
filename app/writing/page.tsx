@@ -60,7 +60,7 @@ export default function Stories() {
     <div className={`min-h-screen transition-colors duration-300 ${
           theme === "dark" 
             ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" 
-            : "bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50"
+            : "bg-gradient-to-br from-amber-50 via-amber-50 to-amber-50"
         }`}>
           <FloatingSocialSlider />
           <div className="container mx-auto">
@@ -99,7 +99,7 @@ export default function Stories() {
 
         <div className="flex justify-center mb-1 p-2">
               <div className={`inline-flex rounded-full p-1 ${
-                theme === "dark" ? "bg-gray-800" : "bg-gray-200"
+                theme === "dark" ? "bg-gray-800" : "bg-amber-50"
               }`}>
                 <button
                   onClick={() => setActiveTab("stories")}
@@ -152,7 +152,7 @@ export default function Stories() {
               <div className={`rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
               theme === "dark" 
                 ? "bg-gray-800" 
-                : "bg-white"
+                : "bg-amber-50"
               }`}>
 
 

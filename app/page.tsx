@@ -39,7 +39,7 @@ export default function HomePage() {
         className={`min-h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
           theme === "dark" 
             ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-sky-100" 
-            : "bg-gradient-to-br from-sky-50 via-fuchsia-50 to-sky-50 text-gray-600"
+            : " text-gray-600"
         }`}
         style={{ minHeight: 'calc(100vh - 72px)' }}
       >
@@ -97,7 +97,7 @@ export default function HomePage() {
                 className={` font-marker inline-block transition-all duration-300 hover:scale-105 decoration-2 cursor-pointer ${
                   theme === "dark"
                            ? "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-                           : "bg-gradient-to-r from-purple-300 via-pink-300 to-blue-300 bg-clip-text text-transparent"
+                           : "bg-gradient-to-r from-red-300  via-red-200 to-red-300 bg-clip-text text-transparent"
                 }`}
               >
                 CREATIVE LITTLE POCKET
@@ -150,7 +150,7 @@ export default function HomePage() {
         className={`fixed top-0 left-0 w-full h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
           theme === "dark"
             ? "bg-gradient-to-r from-gray-800 via-grey-900 to-gray-800 text-sky-100"
-            : "bg-gradient-to-r from-sky-50 via-fuchsia-50 to-sky-50 text-gray-600"
+            : "bg-gradient-to-r bg-amber-50 text-gray-600"
         }`}
         style={{ 
           transform: currentSection === 1 ? 'translateY(0)' : 'translateY(100%)',

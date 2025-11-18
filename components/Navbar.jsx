@@ -22,7 +22,7 @@ export default function Navbar() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 shadow-md bg-sky-50 text-black dark:bg-gray-800 dark:text-amber-50" style={{ height: '72px' }}>
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 shadow-md bg-amber-50 text-black dark:bg-gray-800 dark:text-amber-50" style={{ height: '72px' }}>
      {/* <nav className="flex justify-between items-center py-4 px-4 md:px-8 shadow-md bg-amber-100 text-black dark:bg-gray-800 dark:text-gray-100 relative z-50"> */}
       {/* Left side */}
       <div className="flex items-center space-x-2 md:space-x-4">
@@ -81,6 +81,13 @@ export default function Navbar() {
         </button>
       </div>
 
+      {/* Desktop Menu */}
+      <div className="font-marker hidden md:flex space-x-6 text-lg">
+        <Link href="/technical" className="hover:opacity-80 transition">Technical</Link>
+        <Link href="/writing" className="hover:opacity-80 transition">Writing</Link>
+        <Link href="/photography" className="hover:opacity-80 transition">Photography</Link>
+      </div>
+
       {!menuOpen && (
         <button
           onClick={() => setMenuOpen(true)}
@@ -100,22 +107,12 @@ export default function Navbar() {
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
-        </button>
+        </button>   
       )}
-
-      {/* Desktop Menu */}
-      <div className="font-marker hidden md:flex space-x-6 text-lg">
-        {/* <Link href="/" className="hover:opacity-80 transition">Home</Link> */}
-        {/* <Link href="/bio" className="hover:opacity-80 transition">Bio</Link> */}
-        <Link href="/technical" className="hover:opacity-80 transition">Technical</Link>
-        <Link href="/writing" className="hover:opacity-80 transition">Writing</Link>
-        {/* <Link href="/poems" className="hover:opacity-80 transition">Poems</Link> */}
-        <Link href="/photography" className="hover:opacity-80 transition">Photography</Link>
-      </div>
 
       {/* Mobile Menu Dropdown */}
       {menuOpen && (
-        <div className="fixed inset-0 bg-amber-100 dark:bg-gray-800 md:hidden z-40">
+        <div className="fixed inset-0 bg-amber-50 dark:bg-gray-800 md:hidden z-40">
           {/* Logo and Close Button at Top */}
           <div className="flex justify-between items-center py-4 px-4" style={{ height: '72px' }}>
             <span className="font-bungeeshade text-lg font-bold">Pranav's Pocket</span>

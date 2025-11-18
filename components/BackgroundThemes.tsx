@@ -103,7 +103,7 @@ export default function DotMatrixBackground({ theme }: { theme: "dark" | "light"
           className={`absolute inset-0 ${
             theme === "dark"
               ? "bg-gradient-to-b from-transparent via-purple-500/5 to-transparent"
-              : "bg-gradient-to-b from-transparent via-blue-400/20 to-transparent"
+              : "bg-gradient-to-b from-transparent via-amber-200/20 to-transparent"
           }`}
           style={{
             animation: 'scan 8s linear infinite',
@@ -126,7 +126,7 @@ export default function DotMatrixBackground({ theme }: { theme: "dark" | "light"
         <div className={`absolute inset-0 ${
           theme === "dark"
             ? "bg-gradient-to-r from-gray-900 via-transparent to-gray-900"
-            : "bg-gradient-to-r from-sky-100 via-transparent to-sky-1     00"
+            : "bg-gradient-to-r from-amber-50 via-transparent to-amber-50"
         }`}></div>
       </div>
 

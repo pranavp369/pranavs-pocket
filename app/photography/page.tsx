@@ -86,7 +86,7 @@ export default function Photography() {
     <div className={`min-h-screen transition-colors duration-300 ${
       theme === "dark" 
         ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-gray-100" 
-        : "bg-gradient-to-br from-red-50 to-red-50"
+        : "bg-gradient-to-br from-amber-50 to-amber-50"
     }`}>
       <div className="container mx-auto px-4 py-12">
         {/* Header */}

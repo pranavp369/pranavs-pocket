@@ -54,12 +54,15 @@ const socialLinks = [
     ),
     color: "bg-purple-600 hover:bg-purple-700"
   },
+
+  
   {
-    name: "Facebook",
-    url: "mailto:pranavprakash963@gmail.com",
+    name: "Resume",
+    url: "/Curriculum_Vitae.pdf",
     icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 71 72" fill="none">
-            <path d="M46.4233 38.6403L47.7279 30.3588H39.6917V24.9759C39.6917 22.7114 40.8137 20.4987 44.4013 20.4987H48.1063V13.4465C45.9486 13.1028 43.7685 12.9168 41.5834 12.8901C34.9692 12.8901 30.651 16.8626 30.651 24.0442V30.3588H23.3193V38.6403H30.651V58.671H39.6917V38.6403H46.4233Z" fill="#eaecf0ff" />
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M5.5 21a7.5 7.5 0 0 1 13 0"/>
         </svg>
     ),
     color: "bg-blue-600 hover:bg-purple-700"
@@ -95,7 +98,7 @@ export default function FloatingSocialSlider({ theme = "light" }) {
         aria-label={isOpen ? "Close social links" : "Open social links"}
       >
         {!isOpen && (
-        <span className="absolute right-16 bg-gray-800 text-white text-sm py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+        <span className="absolute right-16 bg-gray-800 text-white text-sm py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap ">
           Connect with me
       </span>
         )}
