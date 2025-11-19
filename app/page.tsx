@@ -293,14 +293,15 @@ export default function HomePage() {
                 : "bg-yellow-50 text-gray-900"
             }`}
             style={{
-              backgroundImage: `repeating-linear-gradient(
-                transparent,
-                transparent 31px,
-                ${theme === "dark" ? "#d4a574" : "#e5c07b"} 31px,
-                ${theme === "dark" ? "#d4a574" : "#e5c07b"} 32px
-              )`,
+              // backgroundImage: `repeating-linear-gradient(
+              //   transparent,
+              //   transparent 31px,
+              //   ${theme === "dark" ? "#d4a574" : "#e5c07b"} 31px,
+              //   ${theme === "dark" ? "#d4a574" : "#e5c07b"} 32px
+              // )`,
               lineHeight: '32px',
-              padding: '40px'
+              padding: '42px'
+              
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -321,11 +322,14 @@ export default function HomePage() {
               </h2>
               
               <p className="font-rougescript text-xl md:text-xl font-bold mb-6 text-gray-800">
-                POCKET is my creative little corner of the internet where I share my passions and projects. Here, you'll find a blend of my work as a developer, writer, and photographer. It's a space where I can express myself freely and connect with others who share similar interests.
-              </p>
-
-              <p className="font-rougescript mb-4 text-gray-800">
-                <strong>Writer:</strong> I express myself through stories and poetry, capturing moments, emotions, and ideas in words. Writing allows me to explore different perspectives and share narratives that resonate.
+                Whilst most dictionaries, literature professors and most people on the world  define a pocket as " A small bag for carrying things in, made of cloth and sewn into the inside or onto the outside of a piece of clothing", I see it a bit differently.
+<br/>
+Pockets, to me, is something that holds onto everything from candy, as a kid, crushed up letters and poems as a teenager to a wallet and bills as an adult. 
+They get a glimpse into everything we want to store or hide, into the most intimate, personal parts of our life. 
+<br/>
+PranavsPocket.Space is such a corner of the internet where I can express myself in all my interests and show a glimpse into myself to anyone wanting a peek.
+<br/>
+So, Once again, I welcome you to my Creative little Pocket Space. 
               </p>
               
             </div>
