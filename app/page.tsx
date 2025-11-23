@@ -226,9 +226,13 @@ export default function HomePage() {
           </div>
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Hi, I'm Pranav</h2>
           <p className="font-marker text-base md:text-lg text-justify max-w-[90%] md:max-w-[72rem] px-4 md:px-0">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et diam id elit viverra lobortis ut sed enim. Aliquam erat volutpat. Morbi at dapibus tortor. Phasellus tristique lacinia erat, eget luctus nibh luctus sed. Maecenas gravida odio quis elit vulputate ultrices. Proin interdum sit amet nulla in egestas. Integer sit amet congue erat, et commodo mi. Suspendisse vel elit lectus. Integer efficitur nulla lorem, non tincidunt nisl euismod vel. Nullam nec enim nisl. Duis volutpat placerat nisl et dignissim. Sed vulputate mattis eros a fringilla.
+          While my current job description would be an 'AI engineer', the best way to describe me is an aspiring polymath. <br/>
+I like to wander across a wide range of disciplines—from healthcare, education, and AI to literature, art, food, photography, and everything in between.<br/>
 
-      Quisque sapien dolor, interdum euismod dignissim ac, pretium convallis elit. Donec placerat nulla nec est efficitur, et semper elit ultrices. Maecenas commodo nulla quis aliquet bibendum. Proin pretium arcu elit, ac hendrerit urna lobortis ac. Duis nec dolor quis libero rutrum consectetur. Nullam eget risus ac diam mattis blandit. Vivamus id sem rutrum nisl sagittis lacinia. Vivamus ut commodo sapien. Etiam pulvinar tortor vestibulum ipsum tristique, venenatis venenatis dui iaculis. Cras vehicula ultrices ligula at tempor.
+In this rapidly evolving age of AI and Machine Learning, my interests lie in the ethical application of these technologies in healthcare, medicine, and education.<br/>
+
+With countless interests sparking my imagination, I continually seek to expand my knowledge and explore the full extent of my curiosity and potential across multiple domains.
+
           </p>
         </div>
 
