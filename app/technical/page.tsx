@@ -146,7 +146,7 @@ export default function Stories() {
               {article.map((item) => (
             <Link
               key={item.id}
-              href={`/technical/${activeTab}/${item.id}`}
+              href={`/technical/${activeTab}/${item.article_title.replace(/\s+/g, '-').toLowerCase()}`}
               className="group"
             >
                 <div className={`p-6 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${

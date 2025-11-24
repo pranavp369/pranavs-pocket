@@ -310,220 +310,220 @@
 // //   );
 // // }
 
-"use client";
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
-import Link from "next/link";
-import  DotMatrixBackground  from "@/components/BackgroundThemes";
+// "use client";
+// import { useState, useEffect } from "react";
+// import { useTheme } from "next-themes";
+// import Link from "next/link";
+// import  DotMatrixBackground  from "@/components/BackgroundThemes";
 
-export default function StoriesPage() {
-  const [activeTab, setActiveTab] = useState("stories"); // "stories" or "poems"
-  const [mounted, setMounted] = useState(false);
-  const { theme } = useTheme();
+// export default function StoriesPage() {
+//   const [activeTab, setActiveTab] = useState("stories"); // "stories" or "poems"
+//   const [mounted, setMounted] = useState(false);
+//   const { theme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+//   useEffect(() => {
+//     setMounted(true);
+//   }, []);
 
-  if (!mounted) {
-    return null; // Avoid hydration mismatch
-  }
+//   if (!mounted) {
+//     return null; // Avoid hydration mismatch
+//   }
 
-  // Sample stories data
-  const stories = [
-    {
-      id: 1,
-      title: "The Last Train",
-      excerpt: "The platform was empty, save for the echo of footsteps that weren't mine...",
-      date: "October 2024",
-      readTime: "5 min read"
-    },
-    {
-      id: 2,
-      title: "Whispers in the Library",
-      excerpt: "Between dusty shelves and forgotten pages, she found a story that shouldn't exist...",
-      date: "September 2024",
-      readTime: "8 min read"
-    },
-    {
-      id: 3,
-      title: "The Coffee Shop Philosopher",
-      excerpt: "Every morning at 7 AM, he sat at the same table with the same question...",
-      date: "August 2024",
-      readTime: "6 min read"
-    },
-    {
-      id: 4,
-      title: "Moonlight Sonata",
-      excerpt: "The piano played itself at midnight, drawing her closer to the truth...",
-      date: "July 2024",
-      readTime: "10 min read"
-    }
-  ];
+//   // Sample stories data
+//   const stories = [
+//     {
+//       id: 1,
+//       title: "The Last Train",
+//       excerpt: "The platform was empty, save for the echo of footsteps that weren't mine...",
+//       date: "October 2024",
+//       readTime: "5 min read"
+//     },
+//     {
+//       id: 2,
+//       title: "Whispers in the Library",
+//       excerpt: "Between dusty shelves and forgotten pages, she found a story that shouldn't exist...",
+//       date: "September 2024",
+//       readTime: "8 min read"
+//     },
+//     {
+//       id: 3,
+//       title: "The Coffee Shop Philosopher",
+//       excerpt: "Every morning at 7 AM, he sat at the same table with the same question...",
+//       date: "August 2024",
+//       readTime: "6 min read"
+//     },
+//     {
+//       id: 4,
+//       title: "Moonlight Sonata",
+//       excerpt: "The piano played itself at midnight, drawing her closer to the truth...",
+//       date: "July 2024",
+//       readTime: "10 min read"
+//     }
+//   ];
 
-  // Sample poems data
-  const poems = [
-    {
-      id: 1,
-      title: "Fragments of Time",
-      excerpt: "In the spaces between seconds / Where moments learn to dance...",
-      date: "October 2024",
-      lines: "12 lines"
-    },
-    {
-      id: 2,
-      title: "Urban Symphony",
-      excerpt: "Sirens sing their midnight song / Concrete dreams and neon lights...",
-      date: "September 2024",
-      lines: "16 lines"
-    },
-    {
-      id: 3,
-      title: "The Garden of Words",
-      excerpt: "I planted verbs in morning dew / And harvested metaphors by noon...",
-      date: "August 2024",
-      lines: "20 lines"
-    },
-    {
-      id: 4,
-      title: "Echoes of Silence",
-      excerpt: "In the quiet between your words / I found a universe...",
-      date: "July 2024",
-      lines: "8 lines"
-    },
-    {
-      id: 5,
-      title: "Canvas of Stars",
-      excerpt: "Paint me in constellations / Write me in light years...",
-      date: "June 2024",
-      lines: "14 lines"
-    }
-  ];
+//   // Sample poems data
+//   const poems = [
+//     {
+//       id: 1,
+//       title: "Fragments of Time",
+//       excerpt: "In the spaces between seconds / Where moments learn to dance...",
+//       date: "October 2024",
+//       lines: "12 lines"
+//     },
+//     {
+//       id: 2,
+//       title: "Urban Symphony",
+//       excerpt: "Sirens sing their midnight song / Concrete dreams and neon lights...",
+//       date: "September 2024",
+//       lines: "16 lines"
+//     },
+//     {
+//       id: 3,
+//       title: "The Garden of Words",
+//       excerpt: "I planted verbs in morning dew / And harvested metaphors by noon...",
+//       date: "August 2024",
+//       lines: "20 lines"
+//     },
+//     {
+//       id: 4,
+//       title: "Echoes of Silence",
+//       excerpt: "In the quiet between your words / I found a universe...",
+//       date: "July 2024",
+//       lines: "8 lines"
+//     },
+//     {
+//       id: 5,
+//       title: "Canvas of Stars",
+//       excerpt: "Paint me in constellations / Write me in light years...",
+//       date: "June 2024",
+//       lines: "14 lines"
+//     }
+//   ];
 
-  const currentData = activeTab === "stories" ? stories : poems;
+//   const currentData = activeTab === "stories" ? stories : poems;
 
-  return (
-    <div className="relative">
-    <div className={`min-h-screen pt-[72px] relative transition-colors duration-300 ${
-    theme === "dark" 
-      ? "bg-gray-900 text-gray-100" 
-      : "bg-gray-50 text-gray-900"
-  }`}>
-    <DotMatrixBackground theme={theme === "dark" ? "dark" : "light"} />
-    <div className="relative z-10">
-      <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">My Writing</h1>
-          <p className={`text-lg ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
-            Stories that unfold and poems that resonate
-          </p>
-        </div>
+//   return (
+//     <div className="relative">
+//     <div className={`min-h-screen pt-[72px] relative transition-colors duration-300 ${
+//     theme === "dark" 
+//       ? "bg-gray-900 text-gray-100" 
+//       : "bg-gray-50 text-gray-900"
+//   }`}>
+//     <DotMatrixBackground theme={theme === "dark" ? "dark" : "light"} />
+//     <div className="relative z-10">
+//       <div className="container mx-auto px-4 py-12">
+//         {/* Header */}
+//         <div className="text-center mb-8">
+//           <h1 className="text-4xl md:text-5xl font-bold mb-4">My Writing</h1>
+//           <p className={`text-lg ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
+//             Stories that unfold and poems that resonate
+//           </p>
+//         </div>
 
-        {/* Toggle Switch */}
-        <div className="flex justify-center mb-12">
-          <div className={`inline-flex rounded-full p-1 ${
-            theme === "dark" ? "bg-gray-800" : "bg-gray-200"
-          }`}>
-            <button
-              onClick={() => setActiveTab("stories")}
-              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeTab === "stories"
-                  ? theme === "dark"
-                    ? "bg-purple-600 text-white shadow-lg"
-                    : "bg-purple-500 text-white shadow-lg"
-                  : theme === "dark"
-                    ? "text-gray-400 hover:text-gray-200"
-                    : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              Stories
-            </button>
-            <button
-              onClick={() => setActiveTab("poems")}
-              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeTab === "poems"
-                  ? theme === "dark"
-                    ? "bg-purple-600 text-white shadow-lg"
-                    : "bg-purple-500 text-white shadow-lg"
-                  : theme === "dark"
-                    ? "text-gray-400 hover:text-gray-200"
-                    : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              Poems
-            </button>
-          </div>
-        </div>
+//         {/* Toggle Switch */}
+//         <div className="flex justify-center mb-12">
+//           <div className={`inline-flex rounded-full p-1 ${
+//             theme === "dark" ? "bg-gray-800" : "bg-gray-200"
+//           }`}>
+//             <button
+//               onClick={() => setActiveTab("stories")}
+//               className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+//                 activeTab === "stories"
+//                   ? theme === "dark"
+//                     ? "bg-purple-600 text-white shadow-lg"
+//                     : "bg-purple-500 text-white shadow-lg"
+//                   : theme === "dark"
+//                     ? "text-gray-400 hover:text-gray-200"
+//                     : "text-gray-600 hover:text-gray-900"
+//               }`}
+//             >
+//               Stories
+//             </button>
+//             <button
+//               onClick={() => setActiveTab("poems")}
+//               className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
+//                 activeTab === "poems"
+//                   ? theme === "dark"
+//                     ? "bg-purple-600 text-white shadow-lg"
+//                     : "bg-purple-500 text-white shadow-lg"
+//                   : theme === "dark"
+//                     ? "text-gray-400 hover:text-gray-200"
+//                     : "text-gray-600 hover:text-gray-900"
+//               }`}
+//             >
+//               Poems
+//             </button>
+//           </div>
+//         </div>
 
-        {/* Content Grid */}
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {currentData.map((item) => (
-              <Link
-                key={item.id}
-                href={`/${activeTab}/${item.id}`}
-                className="group"
-              >
-                <div className={`p-6 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
-                  theme === "dark" 
-                    ? "bg-gray-800 hover:bg-gray-750" 
-                    : "bg-white hover:bg-gray-50"
-                }`}>
-                  {/* Title */}
-                  <h3 className={`text-xl md:text-2xl font-bold mb-3 transition-colors ${
-                    theme === "dark"
-                      ? "text-gray-100 group-hover:text-purple-400"
-                      : "text-gray-900 group-hover:text-purple-600"
-                  }`}>
-                    {item.title}
-                  </h3>
+//         {/* Content Grid */}
+//         <div className="max-w-5xl mx-auto">
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+//             {currentData.map((item) => (
+//               <Link
+//                 key={item.id}
+//                 href={`/${activeTab}/${item.id}`}
+//                 className="group"
+//               >
+//                 <div className={`p-6 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+//                   theme === "dark" 
+//                     ? "bg-gray-800 hover:bg-gray-750" 
+//                     : "bg-white hover:bg-gray-50"
+//                 }`}>
+//                   {/* Title */}
+//                   <h3 className={`text-xl md:text-2xl font-bold mb-3 transition-colors ${
+//                     theme === "dark"
+//                       ? "text-gray-100 group-hover:text-purple-400"
+//                       : "text-gray-900 group-hover:text-purple-600"
+//                   }`}>
+//                     {item.title}
+//                   </h3>
 
-                  {/* Excerpt */}
-                  <p className={`mb-4 italic ${
-                    theme === "dark" ? "text-gray-400" : "text-gray-600"
-                  }`}>
-                    {item.excerpt}
-                  </p>
+//                   {/* Excerpt */}
+//                   <p className={`mb-4 italic ${
+//                     theme === "dark" ? "text-gray-400" : "text-gray-600"
+//                   }`}>
+//                     {item.excerpt}
+//                   </p>
 
-                  {/* Meta Info */}
-                  <div className={`flex items-center justify-between text-sm ${
-                    theme === "dark" ? "text-gray-500" : "text-gray-500"
-                  }`}>
-                    <span>{item.date}</span>
-                  </div>
+//                   {/* Meta Info */}
+//                   <div className={`flex items-center justify-between text-sm ${
+//                     theme === "dark" ? "text-gray-500" : "text-gray-500"
+//                   }`}>
+//                     <span>{item.date}</span>
+//                   </div>
 
-                  {/* Read More Indicator */}
-                  <div className={`mt-4 flex items-center text-sm font-semibold transition-colors ${
-                    theme === "dark"
-                      ? "text-purple-400 group-hover:text-purple-300"
-                      : "text-purple-600 group-hover:text-purple-700"
-                  }`}>
-                    Read {activeTab === "stories" ? "Story" : "Poem"}
-                    <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-        </div>
+//                   {/* Read More Indicator */}
+//                   <div className={`mt-4 flex items-center text-sm font-semibold transition-colors ${
+//                     theme === "dark"
+//                       ? "text-purple-400 group-hover:text-purple-300"
+//                       : "text-purple-600 group-hover:text-purple-700"
+//                   }`}>
+//                     Read {activeTab === "stories" ? "Story" : "Poem"}
+//                     <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+//                     </svg>
+//                   </div>
+//                 </div>
+//               </Link>
+//             ))}
+//           </div>
+//         </div>
+//         </div>
 
-        {/* Empty State */}
-        {currentData.length === 0 && (
-          <div className="text-center py-16">
-            <p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
-              No {activeTab} yet. Check back soon!
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
-    </div>
-  );
-}
+//         {/* Empty State */}
+//         {currentData.length === 0 && (
+//           <div className="text-center py-16">
+//             <p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
+//               No {activeTab} yet. Check back soon!
+//             </p>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//     </div>
+//   );
+// }
 
 
 
@@ -854,3 +854,226 @@ export default function StoriesPage() {
 //     </div>
 //   );
 // }
+
+"use client";
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
+import { Copy, Check } from 'lucide-react';
+
+export default function ContentBlocks() {
+  const [copiedIndex, setCopiedIndex] = useState(null);
+  const { theme, setTheme } = useTheme();
+
+  const copyToClipboard = (text:any, index:any) => {
+    navigator.clipboard.writeText(text);
+    setCopiedIndex(index);
+    setTimeout(() => setCopiedIndex(null), 2000);
+  };
+
+  const codeExamples = [
+    {
+      language: 'javascript',
+      code: `function greet(name) {
+  return \`Hello, \${name}!\`;
+}
+
+console.log(greet('World'));`
+    },
+    {
+      language: 'python',
+      code: `def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+print(fibonacci(10))`
+    }
+  ];
+
+  const imageExamples = [
+    {
+      src: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
+      alt: 'Abstract technology background',
+      subtitle: 'Modern technology and innovation in digital spaces'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa',
+      alt: 'Earth from space',
+      subtitle: 'Our planet Earth as seen from the International Space Station'
+    }
+  ];
+
+  return (
+    <div  
+    className={`min-h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
+          theme === "dark" 
+            ? "bg-gradient-to-r from-gray-900 via-transparent to-gray-900"
+            : "bg-gradient-to-r from-amber-50 via-transparent to-amber-50"
+        }`}
+        >
+       {/* className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 sm:p-6 md:p-8" */}
+      <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10 md:space-y-12">
+        {/* Header */}
+        <div className="text-center space-y-2 px-4">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white">Next.js Content Blocks</h1>
+          <p className="text-sm sm:text-base text-slate-400">Code blocks, images, and subtitles demonstration</p>
+        </div>
+
+        {/* Code Blocks Section */}
+        <section className="space-y-4 sm:space-y-6">
+          <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2">
+            <span className="text-blue-400">{'</>'}</span>
+            Code Blocks
+          </h2>
+          
+          {codeExamples.map((example, index) => (
+            <div key={index} className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg opacity-50 group-hover:opacity-100 transition duration-300 blur"></div>
+              <div className="relative bg-slate-950 rounded-lg overflow-hidden">
+                {/* Code Header */}
+                <div className="flex items-center justify-between px-3 sm:px-4 py-2 bg-slate-900 border-b border-slate-700">
+                  <span className="text-xs sm:text-sm font-mono text-slate-400">
+                    {example.language}
+                  </span>
+                  <button
+                    onClick={() => copyToClipboard(example.code, index)}
+                    className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 transition text-xs sm:text-sm text-slate-300"
+                  >
+                    {copiedIndex === index ? (
+                      <>
+                        <Check size={14} className="hidden sm:block" />
+                        <Check size={12} className="sm:hidden" />
+                        <span className="hidden sm:inline">Copied!</span>
+                        <span className="sm:hidden">✓</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy size={14} className="hidden sm:block" />
+                        <Copy size={12} className="sm:hidden" />
+                        Copy
+                      </>
+                    )}
+                  </button>
+                </div>
+                
+                {/* Code Content */}
+                <pre className="p-3 sm:p-4 overflow-x-auto">
+                  <code className="text-xs sm:text-sm text-slate-300 font-mono">
+                    {example.code}
+                  </code>
+                </pre>
+              </div>
+            </div>
+          ))}
+        </section>
+
+        {/* Images Section */}
+        <section className="space-y-4 sm:space-y-6">
+          <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2">
+            <span className="text-purple-400">📷</span>
+            Images with Subtitles
+          </h2>
+          
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+            {imageExamples.map((image, index) => (
+              <div key={index} className="group">
+                <div className={`relative overflow-hidden rounded-lg ${
+          theme === "dark" 
+            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-sky-100" 
+            : "bg-yellow-500 text-gray-600"
+        }`}
+        >
+                
+                {/* className="relative overflow-hidden rounded-lg bg-slate-800"> */}
+                  {/* Image */}
+                  <div className="aspect-video relative overflow-hidden">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
+                    />
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+                  </div>
+                  
+                  {/* Subtitle */}
+                  <div className="p-3 sm:p-4 bg-slate-800">
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      {image.subtitle}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Combined Example */}
+        <section className="space-y-4 sm:space-y-6">
+          <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2">
+            <span className="text-green-400">✨</span>
+            Combined Example
+          </h2>
+          
+          <div className={`rounded-lg p-4 sm:p-6 space-y-4 ${
+          theme === "dark" 
+            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-sky-100" 
+            : "bg-amber-100 text-gray-600"
+        }`}
+        >
+          
+          {/* className="bg-slate-800 rounded-lg p-4 sm:p-6 space-y-4"> */}
+            <h3 className="text-lg sm:text-xl font-semibold text-grey dark:text-white">
+              Building a Modern Web App
+            </h3>
+            
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Here's how you can create a simple Next.js API route:
+            </p>
+            
+            {/* Inline Code Block */}
+            <div className="relative">
+              <div className="bg-slate-950 rounded-lg overflow-hidden border border-slate-700">
+                <div className="flex items-center justify-between px-3 sm:px-4 py-2 bg-slate-900">
+                  <span className="text-xs sm:text-sm font-mono text-slate-400">api/hello.js</span>
+                  <button
+                    onClick={() => copyToClipboard('export default function handler(req, res) {\n  res.status(200).json({ message: "Hello World" });\n}', 'combined')}
+                    className="text-slate-400 hover:text-slate-200 transition"
+                  >
+                    {copiedIndex === 'combined' ? <Check size={16} className="hidden sm:block" /> : <Copy size={16} className="hidden sm:block" />}
+                    {copiedIndex === 'combined' ? <Check size={14} className="sm:hidden" /> : <Copy size={14} className="sm:hidden" />}
+                  </button>
+                </div>
+                <pre className="p-3 sm:p-4 overflow-x-auto">
+                  <code className="text-xs sm:text-sm text-slate-300 font-mono">
+                    {`export default function handler(req, res) {
+  res.status(200).json({ message: "Hello World" });
+}`}
+                  </code>
+                </pre>
+              </div>
+            </div>
+            
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              This creates a serverless API endpoint that responds with JSON.
+            </p>
+            
+            {/* Inline Image */}
+            <div className="rounded-lg overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c"
+                alt="Code on screen"
+                className="w-full aspect-video object-cover"
+              />
+              <div className="bg-slate-700 p-3">
+                <p className="text-xs sm:text-sm text-slate-200 italic">
+                  Clean code architecture leads to maintainable applications
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}

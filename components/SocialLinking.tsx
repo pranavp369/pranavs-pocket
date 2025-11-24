@@ -58,7 +58,7 @@ const socialLinks = [
   
   {
     name: "Resume",
-    url: "/Curriculum_Vitae.pdf",
+    url: "/CV_Jobs_.pdf",
     icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <circle cx="12" cy="7" r="4"/>

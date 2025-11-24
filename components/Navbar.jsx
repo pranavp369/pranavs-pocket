@@ -86,6 +86,7 @@ export default function Navbar() {
         <Link href="/technical" className="hover:opacity-80 transition">Technical</Link>
         <Link href="/writing" className="hover:opacity-80 transition">Writing</Link>
         <Link href="/photography" className="hover:opacity-80 transition">Photography</Link>
+        {/* <Link href="/poems" className="hover:opacity-80 transition">Poems</Link> */}
       </div>
 
       {!menuOpen && (
@@ -156,7 +157,7 @@ export default function Navbar() {
               Technical
             </Link>
             <Link 
-              href="/Writing" 
+              href="/writing" 
               onClick={closeMenu} 
               className="hover:bg-gray-200 dark:hover:bg-gray-700 py-3 px-6 rounded transition w-64 text-center"
             >
