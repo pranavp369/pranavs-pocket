@@ -236,7 +236,7 @@ export default function BrainAgePredictionPart1() {
             
             <div className="rounded-lg p-4 sm:p-6 space-y-4 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-sky-100">
               <h3 className="text-lg sm:text-xl font-semibold text-white">
-                Building a Modern Web App
+                New Project Patch
               </h3>
               
               <p className="text-sm sm:text-base leading-relaxed text-slate-300">
