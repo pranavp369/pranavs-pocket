@@ -231,7 +231,7 @@ export default function BrainAgePredictionPart1() {
           <section className="space-y-4 sm:space-y-6">
             <h2 className="text-xl sm:text-2xl font-semibold flex items-center gap-2 px-2 text-white">
               <span className="text-green-400">✨</span>
-              Combined Example
+              PROJECTS PATCH
             </h2>
             
             <div className="rounded-lg p-4 sm:p-6 space-y-4 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-sky-100">
