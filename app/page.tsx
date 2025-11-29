@@ -51,6 +51,7 @@ export default function HomePage() {
         <div className={`absolute bottom-10 right-10 w-40 h-40 border-r-4 border-b-4 rounded-br-3xl ${
           theme === "dark" ? "border-blue-500/30" : "border-purple-500/30"
         }`}></div>
+        <FloatingSocialSlider />
 
         {/* Glowing orbs */}
         {/* <div
@@ -191,7 +192,7 @@ export default function HomePage() {
           style={{ animationDelay: "1s" }}
         ></div> */}
       </div>
-        <FloatingSocialSlider />
+        
         {/* Slider Toggle at Top */}
         <button
           onClick={() => scrollToSection(0)}
