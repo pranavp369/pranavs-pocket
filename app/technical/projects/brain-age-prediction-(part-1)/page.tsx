@@ -103,7 +103,7 @@ export default function BrainAgePredictionPart1() {
             Combined Example
           </h2>
           
-          <div className={`rounded-lg p-4 sm:p-6 space-y-4 ${
+          <div className={`flex flex-col rounded-lg p-4 sm:p-6 space-y-4 ${
             theme === "dark" 
               ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-sky-100" 
               : "bg-amber-100 text-gray-600"
