@@ -86,7 +86,7 @@ export default function Navbar() {
         <Link href="/technical" className="hover:opacity-80 transition">Technical</Link>
         <Link href="/writing" className="hover:opacity-80 transition">Writing</Link>
         <Link href="/photography" className="hover:opacity-80 transition">Photography</Link>
-        <Link href="/poems" className="hover:opacity-80 transition">Poems</Link>
+        {/* <Link href="/poems" className="hover:opacity-80 transition">Poems</Link> */}
       </div>
 
       {!menuOpen && (

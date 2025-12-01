@@ -149,6 +149,51 @@ of cognitive health of the individual.
                 </p>
               </div>
             </div>
+            <p className="text-base text-justify">
+              Since we are using traditional machine learning algorithms for the brain age prediction, we need to extract relevant features from the three-dimensional MRI images. The features decided upon for this project are volumetric measurements of different internal structures of the brain such as ventricles, cerebellum cortex, hippocampus, cerebrospinal fluid, and much more.
+              The feature dataset was created by passing the IXI dataset through the FastSurfer pipeline and extracting a segmented 3D image which is segmented into 94 separate categories. The response from the FastSurfer Pipeline is a volumetric parcellation image and a binary mask image of the skull-stripped brain segmentation. The parcellation image is the 3D image where the voxels are labeled according to the segmentation results. This parcellation image is taken and the volume of each segmented label is computed
+              <br />
+              <br />
+              Two Comma Separated Value (CSV) files were created. One contains all the individual structure volumes and the total intracranial volume computed on the binary mask of the skull-stripped brain image and the sex of the participants from the demographic information file and the other, with the gray matter volume (GMV), white matter volume (WMV) and cerebrospinal fluid volume (CSFV) and total intracranial volume along with the sex and age of the participants. The first dataset consisted of 581 cases each containing 96 features. This dataset can be called the individual segmentation dataset. The second dataset consisted of 581 cases with 5 input features. This dataset can be called the Tissue group dataset.
+            </p>
+            <p className="text-2xl">Algorithms</p>
+            <p className="text-base text-justify">
+              For the first part of the project, we will look into the performance of traditional machine learning algorithms on the brain age prediction task. The algorithms that will be used in this part of the project are <b>Simple Linear Regression</b>,<b> Lasso Regression </b>,<b> Random Forest Regression </b>,<b> Gradient Boosting Regression </b>,<b> Elastic Regression </b>, and <b> Kernel Ridge Regression </b>
+              <br />
+              <br />
+              All the algorithms were fine-tuned and the hyperparameters for each algorithm are as follows:
+              <br />
+              <br />
+              <b>Simple Linear Regression:</b> 
+              <br />  
+              The simple linear regression model was used as it is the most basic and reliable regression model and to set a benchmark to compare the performance of other models. The simple linear regression was tuned with all the default hyperparameters of scikit-learn package, which is mainly fit intercept=True for the best possible result.
+              <br />
+              <br />
+              <b>Lasso Regression:</b> 
+              <br />  
+              In the implementation of the Lasso Regression, all the default hyperparameters of scikit-learn were used except for the λ value, which is the parameter used to tunes the model’s bias-variance tradeoff. To find the best λ value, several lambda values were tried and the best result on the validation set was selected. To obtain the best result, the lambda value was set to 0.02.
+              <br />
+              <br />
+              <b>Random Forest Regression:</b> 
+              <br />  
+              In the case of the random forest regression, a max depth of 50 was used for the optimal results.
+              <br />
+              <br />
+              <b>Gradient Boosting Regression:</b> 
+              <br />  
+              The gradient-boosting optimal hyperparameters that were set were a learning rate of 0.05, 15 minimum sample leaves, 10 minimum sample splits, a maximum depth of 4 trained with huber loss for 3000 n estimators.
+              <br />
+              <br />
+              <b>Elastic Regression:</b> 
+              <br />  
+              In elastic regression, the alpha was set to 0.05, the l1 ratio to 0.9, and a maximum iteration of 10000 as the optimal hyperparameter.
+              <br />
+              <br />
+              <b>Kernel Ridge Regression:</b> 
+              <br />  
+              The kernel ridge regression used alpha as 0.9, a polynomial kernel with degree as 2 and coefficient as 25.0.
+            </p>
+            
             
             <p className="text-3xl">III. RESULTS</p>
             <p className="text-3xl">IV. REFERENCES</p>

@@ -221,9 +221,9 @@ export default function HomePage() {
           <div className="w-[18vw] h-[18vw] md:w-[10vw] md:h-[10vw] max-w-80 max-h-80 rounded-full overflow-hidden shadow-2xl mb-6 ring-2 ring-white ring-opacity-50 mt-0 md:mt-0">
             <img 
               //src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop"
-              src="\projects\brain-age-prediction-1\BrainMRI.jpg" 
+              src="\Profile_Pic.jpg" 
               alt="Profile"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-fill"
             />
           </div>
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Hi, I'm Pranav</h2>
