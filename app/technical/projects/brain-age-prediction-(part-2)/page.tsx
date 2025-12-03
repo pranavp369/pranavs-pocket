@@ -6,14 +6,18 @@ import { useTheme } from "next-themes";
 import CommentSection from "@/components/CommentSection";
 
 export default function BrainAgePredictionPart2() {
-  const page_name = "BrainAgePredictionPart2";
+  const page_name = "Brain Age Prediction Part2";
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
+  const [dataLoaded, setDataLoaded] = useState<'Exists' | 'NotExists'>('Exists');
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // Prevent hydration mismatch by waiting for client-side mount
   useEffect(() => {
     setMounted(true);
+    setDataLoaded('NotExists');
+    setLoading(false);
   }, []);
 
   const copyToClipboard = (text: string, index: string) => {
@@ -40,6 +44,13 @@ export default function BrainAgePredictionPart2() {
         ? "bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-sky-100" 
         : "bg-gradient-to-br from-amber-50 via-orange-50 to-amber-50 text-gray-600"
     }`}>
+      {loading ? (
+            <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>Loading {page_name} ...</p></div>
+             //<p className="text-center">Loading {activeTab}...</p>
+            ) : dataLoaded === 'NotExists' ? (
+            <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>No {page_name} yet. Check back soon!</p></div>
+             //<p className="text-center">No {activeTab} yet.</p>
+            ) :  (
       <div className="w-full max-w-4xl mx-auto space-y-8 sm:space-y-10 md:space-y-12 px-4 py-8">
         <section className="space-y-4 sm:space-y-6">
           <h1 className={`text-5xl sm:text-5xl font-semibold flex justify-center gap-2 px-2 sm:px-0 ${
@@ -124,6 +135,7 @@ export default function BrainAgePredictionPart2() {
         {/* Render Comment Section */}
         <CommentSection pageName={page_name} />
       </div>
+  )}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { ThemeProvider } from 'next-themes'
 import Navbar from "../components/Navbar";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import "katex/dist/katex.min.css";
 import { Inter, Playfair_Display, Permanent_Marker,Monoton,Rubik_Glitch, Bungee_Shade,Rouge_Script } from 'next/font/google'
 
 export const metadata: Metadata = {

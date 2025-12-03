@@ -113,7 +113,7 @@ export default function Stories() {
                         : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
-                  Projects
+                  Stories
                 </button>
                 <button
                   onClick={() => setActiveTab("poems")}
@@ -127,7 +127,7 @@ export default function Stories() {
                         : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
-                  Blogs
+                  Poems
                 </button>
               </div>
             </div>

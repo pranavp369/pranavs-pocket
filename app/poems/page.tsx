@@ -855,220 +855,484 @@
 //   );
 // }
 
+// "use client";
+// import { useState, useEffect } from 'react';
+// import { useTheme } from 'next-themes';
+// import { Copy, Check } from 'lucide-react';
+
+// export default function ContentBlocks() {
+//   const [copiedIndex, setCopiedIndex] = useState(null);
+//   const { theme, setTheme } = useTheme();
+
+//   const copyToClipboard = (text:any, index:any) => {
+//     navigator.clipboard.writeText(text);
+//     setCopiedIndex(index);
+//     setTimeout(() => setCopiedIndex(null), 2000);
+//   };
+
+//   const codeExamples = [
+//     {
+//       language: 'javascript',
+//       code: `function greet(name) {
+//   return \`Hello, \${name}!\`;
+// }
+
+// console.log(greet('World'));`
+//     },
+//     {
+//       language: 'python',
+//       code: `def fibonacci(n):
+//     if n <= 1:
+//         return n
+//     return fibonacci(n-1) + fibonacci(n-2)
+
+// print(fibonacci(10))`
+//     }
+//   ];
+
+//   const imageExamples = [
+//     {
+//       src: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
+//       alt: 'Abstract technology background',
+//       subtitle: 'Modern technology and innovation in digital spaces'
+//     },
+//     {
+//       src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa',
+//       alt: 'Earth from space',
+//       subtitle: 'Our planet Earth as seen from the International Space Station'
+//     }
+//   ];
+
+//   return (
+//     <div  
+//     className={`min-h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
+//           theme === "dark" 
+//             ? "bg-gradient-to-r from-gray-900 via-transparent to-gray-900"
+//             : "bg-gradient-to-r from-amber-50 via-transparent to-amber-50"
+//         }`}
+//         >
+//        {/* className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 sm:p-6 md:p-8" */}
+//       <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10 md:space-y-12">
+//         {/* Header */}
+//         <div className="text-center space-y-2 px-4">
+//           <h1 className="text-3xl sm:text-4xl font-bold text-white">Next.js Content Blocks</h1>
+//           <p className="text-sm sm:text-base text-slate-400">Code blocks, images, and subtitles demonstration</p>
+//         </div>
+
+//         {/* Code Blocks Section */}
+//         <section className="space-y-4 sm:space-y-6">
+//           <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2">
+//             <span className="text-blue-400">{'</>'}</span>
+//             Code Blocks
+//           </h2>
+          
+//           {codeExamples.map((example, index) => (
+//             <div key={index} className="relative group">
+//               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg opacity-50 group-hover:opacity-100 transition duration-300 blur"></div>
+//               <div className="relative bg-slate-950 rounded-lg overflow-hidden">
+//                 {/* Code Header */}
+//                 <div className="flex items-center justify-between px-3 sm:px-4 py-2 bg-slate-900 border-b border-slate-700">
+//                   <span className="text-xs sm:text-sm font-mono text-slate-400">
+//                     {example.language}
+//                   </span>
+//                   <button
+//                     onClick={() => copyToClipboard(example.code, index)}
+//                     className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 transition text-xs sm:text-sm text-slate-300"
+//                   >
+//                     {copiedIndex === index ? (
+//                       <>
+//                         <Check size={14} className="hidden sm:block" />
+//                         <Check size={12} className="sm:hidden" />
+//                         <span className="hidden sm:inline">Copied!</span>
+//                         <span className="sm:hidden">✓</span>
+//                       </>
+//                     ) : (
+//                       <>
+//                         <Copy size={14} className="hidden sm:block" />
+//                         <Copy size={12} className="sm:hidden" />
+//                         Copy
+//                       </>
+//                     )}
+//                   </button>
+//                 </div>
+                
+//                 {/* Code Content */}
+//                 <pre className="p-3 sm:p-4 overflow-x-auto">
+//                   <code className="text-xs sm:text-sm text-slate-300 font-mono">
+//                     {example.code}
+//                   </code>
+//                 </pre>
+//               </div>
+//             </div>
+//           ))}
+//         </section>
+
+//         {/* Images Section */}
+//         <section className="space-y-4 sm:space-y-6">
+//           <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2">
+//             <span className="text-purple-400">📷</span>
+//             Images with Subtitles
+//           </h2>
+          
+//           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+//             {imageExamples.map((image, index) => (
+//               <div key={index} className="group">
+//                 <div className={`relative overflow-hidden rounded-lg ${
+//           theme === "dark" 
+//             ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-sky-100" 
+//             : "bg-yellow-500 text-gray-600"
+//         }`}
+//         >
+                
+//                 {/* className="relative overflow-hidden rounded-lg bg-slate-800"> */}
+//                   {/* Image */}
+//                   <div className="aspect-video relative overflow-hidden">
+//                     <img
+//                       src={image.src}
+//                       alt={image.alt}
+//                       className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
+//                     />
+//                     {/* Overlay gradient */}
+//                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+//                   </div>
+                  
+//                   {/* Subtitle */}
+//                   <div className="p-3 sm:p-4 bg-slate-800">
+//                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+//                       {image.subtitle}
+//                     </p>
+//                   </div>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </section>
+
+//         {/* Combined Example */}
+//         <section className="space-y-4 sm:space-y-6">
+//           <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2">
+//             <span className="text-green-400">✨</span>
+//             Combined Example
+//           </h2>
+          
+//           <div className={`rounded-lg p-4 sm:p-6 space-y-4 ${
+//           theme === "dark" 
+//             ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-sky-100" 
+//             : "bg-amber-100 text-gray-600"
+//         }`}
+//         >
+          
+//           {/* className="bg-slate-800 rounded-lg p-4 sm:p-6 space-y-4"> */}
+//             <h3 className="text-lg sm:text-xl font-semibold text-grey dark:text-white">
+//               Building a Modern Web App
+//             </h3>
+            
+//             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+//               Here's how you can create a simple Next.js API route:
+//             </p>
+            
+//             {/* Inline Code Block */}
+//             <div className="relative">
+//               <div className="bg-slate-950 rounded-lg overflow-hidden border border-slate-700">
+//                 <div className="flex items-center justify-between px-3 sm:px-4 py-2 bg-slate-900">
+//                   <span className="text-xs sm:text-sm font-mono text-slate-400">api/hello.js</span>
+//                   <button
+//                     onClick={() => copyToClipboard('export default function handler(req, res) {\n  res.status(200).json({ message: "Hello World" });\n}', 'combined')}
+//                     className="text-slate-400 hover:text-slate-200 transition"
+//                   >
+//                     {copiedIndex === 'combined' ? <Check size={16} className="hidden sm:block" /> : <Copy size={16} className="hidden sm:block" />}
+//                     {copiedIndex === 'combined' ? <Check size={14} className="sm:hidden" /> : <Copy size={14} className="sm:hidden" />}
+//                   </button>
+//                 </div>
+//                 <pre className="p-3 sm:p-4 overflow-x-auto">
+//                   <code className="text-xs sm:text-sm text-slate-300 font-mono">
+//                     {`export default function handler(req, res) {
+//   res.status(200).json({ message: "Hello World" });
+// }`}
+//                   </code>
+//                 </pre>
+//               </div>
+//             </div>
+            
+//             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+//               This creates a serverless API endpoint that responds with JSON.
+//             </p>
+            
+//             {/* Inline Image */}
+//             <div className="rounded-lg overflow-hidden">
+//               <img
+//                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c"
+//                 alt="Code on screen"
+//                 className="w-full aspect-video object-cover"
+//               />
+//               <div className="bg-slate-700 p-3">
+//                 <p className="text-xs sm:text-sm text-slate-200 italic">
+//                   Clean code architecture leads to maintainable applications
+//                 </p>
+//               </div>
+//             </div>
+//           </div>
+//         </section>
+//       </div>
+//     </div>
+//   );
+// }
+
 "use client";
 import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
 import { Copy, Check } from 'lucide-react';
 
-export default function ContentBlocks() {
-  const [copiedIndex, setCopiedIndex] = useState(null);
-  const { theme, setTheme } = useTheme();
+declare global {
+  interface Window {
+    katex?: any;
+  }
+}
 
-  const copyToClipboard = (text:any, index:any) => {
+export default function FormulaBlock() {
+  const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
+  const [katexLoaded, setKatexLoaded] = useState(false);
+
+  useEffect(() => {
+    // Load KaTeX CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
+    document.head.appendChild(link);
+
+    // Load KaTeX JS
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+    script.onload = () => setKatexLoaded(true);
+    document.body.appendChild(script);
+
+    return () => {
+      document.head.removeChild(link);
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (katexLoaded && window.katex) {
+      // Render all formulas
+      document.querySelectorAll('.math-formula').forEach((element: any) => {
+        const latex = element.getAttribute('data-latex');
+        if (latex) {
+          try {
+            window.katex.render(latex, element, {
+              throwOnError: false,
+              displayMode: true
+            });
+          } catch (e) {
+            console.error('KaTeX rendering error:', e);
+          }
+        }
+      });
+
+      document.querySelectorAll('.math-inline').forEach((element: any) => {
+        const latex = element.getAttribute('data-latex');
+        if (latex) {
+          try {
+            window.katex.render(latex, element, {
+              throwOnError: false,
+              displayMode: false
+            });
+          } catch (e) {
+            console.error('KaTeX rendering error:', e);
+          }
+        }
+      });
+    }
+  }, [katexLoaded]);
+
+  const copyToClipboard = (text: string, index: string) => {
     navigator.clipboard.writeText(text);
     setCopiedIndex(index);
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
-  const codeExamples = [
+  const formulas = [
     {
-      language: 'javascript',
-      code: `function greet(name) {
-  return \`Hello, \${name}!\`;
-}
-
-console.log(greet('World'));`
+      title: "Quadratic Formula",
+      latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+      description: "Solution for ax² + bx + c = 0"
     },
     {
-      language: 'python',
-      code: `def fibonacci(n):
-    if n <= 1:
-        return n
-    return fibonacci(n-1) + fibonacci(n-2)
-
-print(fibonacci(10))`
+      title: "Einstein's Mass-Energy Equivalence",
+      latex: "E = mc^2",
+      description: "Energy equals mass times the speed of light squared"
+    },
+    {
+      title: "Pythagorean Theorem",
+      latex: "a^2 + b^2 = c^2",
+      description: "Relationship between sides of a right triangle"
+    },
+    {
+      title: "Normal Distribution",
+      latex: "f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}",
+      description: "Probability density function for normal distribution"
+    },
+    {
+      title: "Euler's Identity",
+      latex: "e^{i\\pi} + 1 = 0",
+      description: "The most beautiful equation in mathematics"
+    },
+    {
+      title: "Derivative Definition",
+      latex: "f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}",
+      description: "Definition of a derivative"
     }
   ];
 
-  const imageExamples = [
-    {
-      src: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
-      alt: 'Abstract technology background',
-      subtitle: 'Modern technology and innovation in digital spaces'
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa',
-      alt: 'Earth from space',
-      subtitle: 'Our planet Earth as seen from the International Space Station'
-    }
-  ];
+  if (!katexLoaded) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-purple-600 border-t-purple-300 rounded-full animate-spin"></div>
+          <p className="text-purple-200 text-sm">Loading KaTeX...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div  
-    className={`min-h-screen flex flex-col justify-between items-center transition-colors duration-300 ${
-          theme === "dark" 
-            ? "bg-gradient-to-r from-gray-900 via-transparent to-gray-900"
-            : "bg-gradient-to-r from-amber-50 via-transparent to-amber-50"
-        }`}
-        >
-       {/* className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 sm:p-6 md:p-8" */}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 p-4 sm:p-6 md:p-8">
       <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10 md:space-y-12">
         {/* Header */}
         <div className="text-center space-y-2 px-4">
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">Next.js Content Blocks</h1>
-          <p className="text-sm sm:text-base text-slate-400">Code blocks, images, and subtitles demonstration</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white">Mathematical Formulas</h1>
+          <p className="text-sm sm:text-base text-purple-200">Rendered with KaTeX in Next.js</p>
         </div>
 
-        {/* Code Blocks Section */}
+        {/* Formula Gallery */}
         <section className="space-y-4 sm:space-y-6">
-          <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2">
-            <span className="text-blue-400">{'</>'}</span>
-            Code Blocks
+          <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2 sm:px-0">
+            <span className="text-yellow-400">📐</span>
+            Formula Gallery
           </h2>
-          
-          {codeExamples.map((example, index) => (
-            <div key={index} className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg opacity-50 group-hover:opacity-100 transition duration-300 blur"></div>
-              <div className="relative bg-slate-950 rounded-lg overflow-hidden">
-                {/* Code Header */}
-                <div className="flex items-center justify-between px-3 sm:px-4 py-2 bg-slate-900 border-b border-slate-700">
-                  <span className="text-xs sm:text-sm font-mono text-slate-400">
-                    {example.language}
-                  </span>
-                  <button
-                    onClick={() => copyToClipboard(example.code, index)}
-                    className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 transition text-xs sm:text-sm text-slate-300"
-                  >
-                    {copiedIndex === index ? (
-                      <>
-                        <Check size={14} className="hidden sm:block" />
-                        <Check size={12} className="sm:hidden" />
-                        <span className="hidden sm:inline">Copied!</span>
-                        <span className="sm:hidden">✓</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy size={14} className="hidden sm:block" />
-                        <Copy size={12} className="sm:hidden" />
-                        Copy
-                      </>
-                    )}
-                  </button>
-                </div>
-                
-                {/* Code Content */}
-                <pre className="p-3 sm:p-4 overflow-x-auto">
-                  <code className="text-xs sm:text-sm text-slate-300 font-mono">
-                    {example.code}
-                  </code>
-                </pre>
+
+          {formulas.map((formula, index) => (
+            <div key={index} className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 space-y-4 border border-white/20 hover:border-white/40 transition">
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="text-lg sm:text-xl font-semibold text-white">
+                  {formula.title}
+                </h3>
+                <button
+                  onClick={() => copyToClipboard(formula.latex, `formula-${index}`)}
+                  className="text-purple-300 hover:text-purple-100 transition flex-shrink-0"
+                  title="Copy LaTeX"
+                >
+                  {copiedIndex === `formula-${index}` ? (
+                    <Check size={20} />
+                  ) : (
+                    <Copy size={20} />
+                  )}
+                </button>
               </div>
+
+              {/* Rendered Formula */}
+              <div className="bg-white/95 rounded-lg p-6 sm:p-8 shadow-lg">
+                <div 
+                  className="math-formula text-gray-900 text-center text-2xl sm:text-3xl"
+                  data-latex={formula.latex}
+                ></div>
+              </div>
+
+              <p className="text-sm sm:text-base text-purple-200 italic">
+                {formula.description}
+              </p>
+
+              {/* Show LaTeX source */}
+              <details className="text-xs sm:text-sm">
+                <summary className="cursor-pointer text-purple-300 hover:text-purple-100 transition">
+                  Show LaTeX source
+                </summary>
+                <pre className="mt-2 bg-indigo-950/70 rounded p-3 text-purple-200 overflow-x-auto">
+                  <code>{formula.latex}</code>
+                </pre>
+              </details>
             </div>
           ))}
         </section>
 
-        {/* Images Section */}
+        {/* Inline Math Example */}
         <section className="space-y-4 sm:space-y-6">
-          <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2">
-            <span className="text-purple-400">📷</span>
-            Images with Subtitles
+          <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2 sm:px-0">
+            <span className="text-green-400">✍️</span>
+            Inline Formulas
           </h2>
-          
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-            {imageExamples.map((image, index) => (
-              <div key={index} className="group">
-                <div className={`relative overflow-hidden rounded-lg ${
-          theme === "dark" 
-            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-sky-100" 
-            : "bg-yellow-500 text-gray-600"
-        }`}
-        >
-                
-                {/* className="relative overflow-hidden rounded-lg bg-slate-800"> */}
-                  {/* Image */}
-                  <div className="aspect-video relative overflow-hidden">
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
-                    />
-                    {/* Overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
-                  </div>
-                  
-                  {/* Subtitle */}
-                  <div className="p-3 sm:p-4 bg-slate-800">
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                      {image.subtitle}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
+
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 space-y-4 border border-white/20">
+            <p className="text-base sm:text-lg text-black leading-relaxed">
+              You can also use inline formulas like{' '}
+              <span 
+                className="math-inline inline-block mx-1 px-2 py-1 bg-white/90 rounded"
+                data-latex="x^2 + y^2 = z^2"
+              ></span>
+            </p>
           </div>
         </section>
 
-        {/* Combined Example */}
+        {/* Usage Instructions */}
         <section className="space-y-4 sm:space-y-6">
-          <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2">
-            <span className="text-green-400">✨</span>
-            Combined Example
+          <h2 className="text-xl sm:text-2xl font-semibold text-white flex items-center gap-2 px-2 sm:px-0">
+            <span className="text-pink-400">💡</span>
+            How to Use in Your Project
           </h2>
-          
-          <div className={`rounded-lg p-4 sm:p-6 space-y-4 ${
-          theme === "dark" 
-            ? "bg-gradient-to-br from-gray-800 via-grey-900 to-gray-800 text-sky-100" 
-            : "bg-amber-100 text-gray-600"
-        }`}
-        >
-          
-          {/* className="bg-slate-800 rounded-lg p-4 sm:p-6 space-y-4"> */}
-            <h3 className="text-lg sm:text-xl font-semibold text-grey dark:text-white">
-              Building a Modern Web App
-            </h3>
-            
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Here's how you can create a simple Next.js API route:
-            </p>
-            
-            {/* Inline Code Block */}
-            <div className="relative">
-              <div className="bg-slate-950 rounded-lg overflow-hidden border border-slate-700">
-                <div className="flex items-center justify-between px-3 sm:px-4 py-2 bg-slate-900">
-                  <span className="text-xs sm:text-sm font-mono text-slate-400">api/hello.js</span>
-                  <button
-                    onClick={() => copyToClipboard('export default function handler(req, res) {\n  res.status(200).json({ message: "Hello World" });\n}', 'combined')}
-                    className="text-slate-400 hover:text-slate-200 transition"
-                  >
-                    {copiedIndex === 'combined' ? <Check size={16} className="hidden sm:block" /> : <Copy size={16} className="hidden sm:block" />}
-                    {copiedIndex === 'combined' ? <Check size={14} className="sm:hidden" /> : <Copy size={14} className="sm:hidden" />}
-                  </button>
+
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 space-y-4 border border-white/20">
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-white font-semibold mb-2">Option 1: CDN (This Demo)</h4>
+                <p className="text-sm text-purple-200 mb-2">Load KaTeX from CDN in useEffect</p>
+                <div className="bg-indigo-950/70 rounded-lg overflow-hidden border border-purple-500/30">
+                  <pre className="p-3 sm:p-4 overflow-x-auto">
+                    <code className="text-xs sm:text-sm text-purple-200 font-mono">
+{`// Add to head
+<link rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js">
+</script>`}
+                    </code>
+                  </pre>
                 </div>
-                <pre className="p-3 sm:p-4 overflow-x-auto">
-                  <code className="text-xs sm:text-sm text-slate-300 font-mono">
-                    {`export default function handler(req, res) {
-  res.status(200).json({ message: "Hello World" });
-}`}
-                  </code>
-                </pre>
               </div>
-            </div>
-            
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              This creates a serverless API endpoint that responds with JSON.
-            </p>
-            
-            {/* Inline Image */}
-            <div className="rounded-lg overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c"
-                alt="Code on screen"
-                className="w-full aspect-video object-cover"
-              />
-              <div className="bg-slate-700 p-3">
-                <p className="text-xs sm:text-sm text-slate-200 italic">
-                  Clean code architecture leads to maintainable applications
-                </p>
+
+              <div>
+                <h4 className="text-white font-semibold mb-2">Option 2: NPM Package (Recommended)</h4>
+                <div className="bg-indigo-950/70 rounded-lg overflow-hidden border border-purple-500/30">
+                  <div className="flex items-center justify-between px-3 sm:px-4 py-2 bg-indigo-900/50 border-b border-purple-500/30">
+                    <span className="text-xs sm:text-sm font-mono text-purple-300">Install</span>
+                    <button
+                      onClick={() => copyToClipboard('npm install katex react-katex', 'install')}
+                      className="text-purple-300 hover:text-purple-100 transition"
+                    >
+                      {copiedIndex === 'install' ? <Check size={16} /> : <Copy size={16} />}
+                    </button>
+                  </div>
+                  <pre className="p-3 sm:p-4 overflow-x-auto">
+                    <code className="text-xs sm:text-sm text-purple-200 font-mono">
+                      npm install katex react-katex
+                    </code>
+                  </pre>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-white font-semibold mb-2">Usage Example</h4>
+                <div className="bg-indigo-950/70 rounded-lg overflow-hidden border border-purple-500/30">
+                  <pre className="p-3 sm:p-4 overflow-x-auto">
+                    <code className="text-xs sm:text-sm text-purple-200 font-mono">
+{`import { BlockMath, InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
+
+// Block formula
+<BlockMath math="x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}" />
+
+// Inline formula
+<InlineMath math="E = mc^2" />`}
+                    </code>
+                  </pre>
+                </div>
               </div>
             </div>
           </div>

@@ -4,16 +4,24 @@ import { supabase } from "@/lib/supabaseClient";
 import { Copy, Check } from 'lucide-react';
 import { useTheme } from "next-themes";
 import CommentSection from "@/components/CommentSection";
+import { BlockMath, InlineMath } from "react-katex";
+
 
 export default function BrainAgePredictionPart1() {
   const page_name = "BrainAgePredictionPart1";
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [katexLoaded, setKatexLoaded] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [dataLoaded, setDataLoaded] = useState<'Exists' | 'NotExists'>('Exists');
+  
 
   // Prevent hydration mismatch by waiting for client-side mount
   useEffect(() => {
     setMounted(true);
+    setDataLoaded('Exists');
+    setLoading(false);
   }, []);
 
   const copyToClipboard = (text: string, index: string) => {
@@ -40,6 +48,13 @@ export default function BrainAgePredictionPart1() {
         ? "bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-sky-100" 
         : "bg-gradient-to-br from-amber-50 via-orange-50 to-amber-50 text-gray-600"
     }`}>
+      {loading ? (
+            <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>Loading {page_name} ...</p></div>
+             //<p className="text-center">Loading {activeTab}...</p>
+            ) : dataLoaded === 'NotExists' ? (
+            <div className="text-center py-16"><p className={`text-xl ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>No {page_name} yet. Check back soon!</p></div>
+             //<p className="text-center">No {activeTab} yet.</p>
+            ) :  (
       <div className="w-full max-w-4xl mx-auto space-y-8 sm:space-y-10 md:space-y-12 px-4 py-8">
         <section className="space-y-4 sm:space-y-6">
           <h1 className={`text-5xl sm:text-5xl font-semibold flex justify-center gap-2 px-2 sm:px-0 ${
@@ -61,15 +76,6 @@ export default function BrainAgePredictionPart1() {
                 alt="Code on screen"
                 className="w-full aspect-video object-cover"
               />
-              <div className={`p-3 ${
-                theme === "dark" ? "bg-slate-800/90" : "bg-amber-50"
-              }`}>
-                <p className={`text-xs sm:text-sm italic ${
-                  theme === "dark" ? "text-slate-200" : "text-gray-800"
-                }`}>
-                  Clean code architecture leads to maintainable applications
-                </p>
-              </div>
             </div>
 
             {/* Text Content */}
@@ -156,6 +162,7 @@ of cognitive health of the individual.
               <br />
               Two Comma Separated Value (CSV) files were created. One contains all the individual structure volumes and the total intracranial volume computed on the binary mask of the skull-stripped brain image and the sex of the participants from the demographic information file and the other, with the gray matter volume (GMV), white matter volume (WMV) and cerebrospinal fluid volume (CSFV) and total intracranial volume along with the sex and age of the participants. The first dataset consisted of 581 cases each containing 96 features. This dataset can be called the individual segmentation dataset. The second dataset consisted of 581 cases with 5 input features. This dataset can be called the Tissue group dataset.
             </p>
+            <br /> 
             <p className="text-2xl">Algorithms</p>
             <p className="text-base text-justify">
               For the first part of the project, we will look into the performance of traditional machine learning algorithms on the brain age prediction task. The algorithms that will be used in this part of the project are <b>Simple Linear Regression</b>,<b> Lasso Regression </b>,<b> Random Forest Regression </b>,<b> Gradient Boosting Regression </b>,<b> Elastic Regression </b>, and <b> Kernel Ridge Regression </b>
@@ -194,12 +201,137 @@ of cognitive health of the individual.
               The kernel ridge regression used alpha as 0.9, a polynomial kernel with degree as 2 and coefficient as 25.0.
             </p>
             
+            <p className="text-3xl">III. EVALUATION METRICS</p>
+            <p className="text-base text-justify">
+              Evaluation metrics are qualitative measurements used in the field of machine learning
+and deep learning to gauge the performance of the developed models. These
+metrics evaluate the model and help in training the model better by making the
+model try to minimize or maximize the error or accuracy respectively. For regression
+problems, the most commonly used evaluation metrics are Mean Absolute
+Error (MAE), Mean Square Error (MSE), Root Mean Square Error (RMSE), and
+R2 Score. For this project, to maintain a standard evaluation metric across all
+the models, the mean square error and root mean square error were used as the
+evaluation metric. To calculate the errors, the predicted brain age is compared
+with the biological age of the person we have from the demographic data.
+            </p>
+            <BlockMath math="MSE = \frac{1}{n}  \sum_{i=1}^{n} (y_i - \tilde{y} )^2    \;\;\;\;\;\;\;\;\;   RMSE = \sqrt{\frac{1}{n}  \sum_{i=1}^{n} (y_i - \tilde{y} )^2}    " />
+
             
-            <p className="text-3xl">III. RESULTS</p>
-            <p className="text-3xl">IV. REFERENCES</p>
+
+      {/* <p className="mt-6">
+        \int_0^\infty e^{-x^2} \, dx = \frac{\sqrt{\pi}}{2}
+        Inline formula: <InlineMath math="e^{i\pi} + 1 = 0" />
+      </p> */}
+
+            <p className="text-3xl">IV. RESULTS</p>
+              <p className="text-base text-justify">
+                Let you now look at the results obtained from training the different machine learning algorithms on the two datasets.
+              </p>
+              <table className="table-auto md:table-fixed w-full border-collapse border border-slate-400 mb-6">
+                <caption className="text-sm text-gray-500 mt-2">
+                  Machine Learning Model Evaluation (Individual Segmentation)
+                </caption>
+                <thead className="border border-slate-400">
+                  <tr>
+                    <th>Algorithm</th>
+                    <th>MSE</th>
+                    <th>RMSE</th>
+                  </tr>
+                </thead>
+                <tbody className="border border-slate-400">
+                  <tr>
+                    <td>Simple Linear Regression</td>
+                    <td className="text-center">67.019</td>
+                    <td className="text-center">8.186</td>
+                  </tr>
+                  <tr>
+                    <td>Lasso Regression</td>
+                    <td className="text-center">64.272</td>
+                    <td className="text-center">8.017</td>
+                  </tr>
+                  <tr>
+                    <td>Elastic Net Regression</td>
+                    <td className="text-center">64.052</td>
+                    <td className="text-center">8.003</td>
+                  </tr>
+                  <tr>
+                    <td>Random Forest Regression</td>
+                    <td className="text-center">93.300</td>
+                    <td className="text-center">9.660</td>
+                  </tr>
+                  <tr>
+                    <td>Gradient Boosting Regression</td>
+                    <td className="text-center">69.924</td>
+                    <td className="text-center">8.362</td>
+                  </tr>
+                  <tr>
+                    <td>Kernel Ridge Regression</td>
+                    <td className="text-center">57.549 </td>
+                    <td className="text-center">7.586</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table className="table-auto md:table-fixed w-full border-collapse border border-slate-400 mb-6">
+                <caption className="text-sm text-gray-500 mt-2">
+                  Machine Learning Model Evaluation (Tissue Group)
+                </caption>
+                <thead className="border border-slate-400">
+                  <tr>
+                    <th>Algorithm</th>
+                    <th>MSE</th>
+                    <th>RMSE</th>
+                  </tr>
+                </thead>
+                <tbody className="border border-slate-400">
+                  <tr>
+                    <td>Simple Linear Regression</td>
+                    <td className="text-center">86.103</td>
+                    <td className="text-center">9.280</td>
+                  </tr>
+                  <tr>
+                    <td>Lasso Regression</td>
+                    <td className="text-center">86.103</td>
+                    <td className="text-center">9.280</td>
+                  </tr>
+                  <tr>
+                    <td>Elastic Net Regression</td>
+                    <td className="text-center">85.817</td>
+                    <td className="text-center">9.264</td>
+                  </tr>
+                  <tr>
+                    <td>Random Forest Regression</td>
+                    <td className="text-center">90.214</td>
+                    <td className="text-center">9.498</td>
+                  </tr>
+                  <tr>
+                    <td>Gradient Boosting Regression</td>
+                    <td className="text-center">102.268</td>
+                    <td className="text-center">10.113</td>
+                  </tr>
+                  <tr>
+                    <td>Kernel Ridge Regression</td>
+                    <td className="text-center">88.015</td>
+                    <td className="text-center">9.382</td>
+                  </tr>
+                </tbody>
+              </table>
+              <br />
+              <p className="text-base text-justify">
+                From the Individual Segmentation table above, we can see that the Kernel Ridge Regression model provided the best result with an MSE value of 57.549 and an RMSE value of 7.586. Except for the Random Forest Regression, the rest of the models performed reasonably well and had similar MSE and RMSE. But in the case of the Tissue group dataset results, all the models performed worse than their performance in the individual segmentation dataset except for the Random Forest Regression algorithm. From comparing the performance of the models on the two datasets we can say that generally, the individual dataset helped in training the models better than the tissue group dataset.
+              </p>
+            <p className="text-3xl">V. REFERENCES</p>
+            <div className="mt-10">
+              <h2 className="text-xl font-bold mb-4">References</h2>
+                <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>Prakash Chandra, P. (2023). Comprehensive Study of Brain Age Prediction using Classical Machine Learning and Neural Networks (Dissertation). Retrieved from  <a  href="https://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-517300"  className="text-blue-600 dark:text-blue-400 underline hover:no-underline"  target="_blank"  rel="noopener noreferrer" > https://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-517300</a></li>
+                  <li>L. Henschel, S. Conjeti, S. Estrada, K. Diers, B. Fischl, and M. Reuter, “Fastsurfer - a fast and accurate deep learning based neuroimaging pipeline,” NeuroImage, vol. 219, p. 117012, 2020. [Online]. Available: <a  href="https://www.sciencedirect.com/science/article/pii/S1053811920304985"  className="text-blue-600 dark:text-blue-400 underline hover:no-underline"  target="_blank"  rel="noopener noreferrer" >https://www.sciencedirect.com/science/article/pii/S1053811920304985</a></li>
+                  <li>J. Han, S. Kim, J. Lee, and W. Lee, “Brain age prediction: A comparison between machine learning models using brain morphometric data.” Sensors 2022, 22, 8077), 2022. [Online]. Available: <a  href="https://doi.org/10.3390/s22208077"  className="text-blue-600 dark:text-blue-400 underline hover:no-underline"  target="_blank"  rel="noopener noreferrer" >https://doi.org/10.3390/s22208077</a></li>
+                </ol>
+            </div>
 
             {/* Inline Code Block */}
-            <div className="relative">
+            {/* <div className="relative">
               <div className="rounded-lg overflow-hidden border bg-slate-950 border-slate-700 shadow-md">
                 <div className="flex items-center justify-between px-3 sm:px-4 py-2 bg-slate-900">
                   <span className="text-xs sm:text-sm font-mono text-slate-400">
@@ -236,13 +368,14 @@ of cognitive health of the individual.
               theme === "dark" ? "text-slate-300" : "text-gray-600"
             }`}>
               This creates a serverless API endpoint that responds with JSON.
-            </p>
+            </p> */}
           </div>
         </section>
         
         {/* Render Comment Section */}
         <CommentSection pageName={page_name} />
       </div>
+      )}
     </div>
   );
 }

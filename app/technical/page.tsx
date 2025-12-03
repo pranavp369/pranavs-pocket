@@ -20,10 +20,10 @@ type Article = {
 
 export default function Stories() {
   const [activeTab, setActiveTab] = useState<'projects' | 'blogs'>('projects');
-    const [article, setArticle] = useState<Article[]>([]);
-    const { theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-    const [loading, setLoading] = useState(true);
+  const [article, setArticle] = useState<Article[]>([]);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
       setMounted(true);
